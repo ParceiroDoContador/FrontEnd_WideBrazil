@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/ParceiroDoContador/FrontEnd_WideBrazil/issues"
   },
-  "homepage": "https://github.com/ParceiroDoContador/FrontEnd_WideBrazil#readme"
+  "homepage": "https://github.com/ParceiroDoContador/FrontEnd_WideBrazil#readme",
+  "dependencies": {
+    "knex": "^2.3.0",
+    "pg": "^8.8.0"
+  }
 }
