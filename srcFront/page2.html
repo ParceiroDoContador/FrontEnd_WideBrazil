@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./style2.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css">
+    <script src="script.js" defer></script>
     <title>Wide Brazil</title>
 </head>
 <body>
     <div class = "mainDiv2">
         <div class="modal2">
                 <div class = "modal-content2">
-                    <img src="../wideBrazilLogo.png" alt="Logo Wide Brazil" class="logo2">
+                    <img src="./wideBrazilLogo.png" alt="Logo Wide Brazil" class="logo2">
                     <div class="importPlanilha">
                     <strong>Importar planilha:</strong>
-                    <button>Upload</button>
+                    <br>
+                <form id ='dataForm'>
+                    <input type="file" id="file" accept="*"></input>
+                    <button type="submit">Upload</button>
+                </form>
                 </div>
                 <div class = "return">
                     <a href = "page1.html"><button class="backPage"><</button></a>
                 </div>
             </div>
-        </div> 
-            
+        </div>    
     </div>
     <footer>
         <strong id="footer2">Desenvolvido pela Parceiro do Contador</strong>

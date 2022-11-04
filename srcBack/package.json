@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/ParceiroDoContador/FrontEnd_WideBrazil#readme",
   "dependencies": {
+    "aws": "^0.0.3-2",
+    "aws-sdk": "^2.1247.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "knex": "^2.3.0",
+    "node": "^14.21.0",
     "pg": "^8.8.0"
   }
 }
