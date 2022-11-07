@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { uploadFile } = require('./bucket');
+const { uploadFile, getFile} = require('./bucket');
 
 const app = express();
 
@@ -13,6 +13,9 @@ app.get('/s3Url', async (req, res) => {
     res.send({ url });
 });
 
-
+app.get('/s3UrlGet', async (req, res) => {
+    const url2 = await getFile();
+    res.send({ url2 });
+});
 
 app.listen(8080, () => console.log('Server Up!'));

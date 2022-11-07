@@ -1,16 +1,14 @@
 const aws = require('aws-sdk');
 const dotEnv = require('dotenv');
-const crypto = require('crypto');
-const {promisify} = require('util');
+const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
 
 
-const randomName = promisify(crypto.randomBytes);
 dotEnv.config();
 
 const region = 'sa-east-1';
-const bucketName = 'datafile-direct-bucket'
-const accessKeyId = 'AKIA3WLWJHVCI4BRDMXK';
-const secretAccessKey = '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';
+const bucketName = 'parceiro-do-contador-bucket'
+const accessKeyId = AWS_ACCESS_KEY_ID;
+const secretAccessKey = AWS_SECRET_ACCESS_KEY;
 
 const s3 = new aws.S3({
     region,
@@ -20,17 +18,29 @@ const s3 = new aws.S3({
 });
 
  async function uploadFile() {
-    const rawBytes = await randomName(16);
-    const fileName = rawBytes.toString('hex');
+   const fileName = 'planilha_wild_brasil2';
 
     const params = ({
         Bucket: bucketName,
         Key: fileName,
-        Expires: 60
     });
 
     const uploadURL = await s3.getSignedUrlPromise('putObject', params);
     return uploadURL;
 }
 
-module.exports = { uploadFile };
+async function getFile() {
+    const fileName = 'planilha_wild_brasil2';
+
+    const params = ({
+        Bucket: bucketName,
+        Key: fileName,
+    });
+
+    const getURL = await s3.getSignedUrlPromise('getObject', params);
+    return getURL;
+
+}
+
+
+module.exports = { uploadFile, getFile };
