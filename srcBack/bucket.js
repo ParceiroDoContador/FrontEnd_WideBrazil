@@ -3,6 +3,7 @@ const dotEnv = require('dotenv');
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
 
 
+
 dotEnv.config();
 
 const region = 'sa-east-1';
@@ -18,7 +19,7 @@ const s3 = new aws.S3({
 });
 
  async function uploadFile() {
-   const fileName = 'planilha_wild_brasil2';
+   const fileName = 'planilha_wide.pdf';
 
     const params = ({
         Bucket: bucketName,
@@ -30,7 +31,7 @@ const s3 = new aws.S3({
 }
 
 async function getFile() {
-    const fileName = 'planilha_wild_brasil2';
+    const fileName = 'planilha_wide.pdf';
 
     const params = ({
         Bucket: bucketName,
@@ -43,4 +44,5 @@ async function getFile() {
 }
 
 
-module.exports = { uploadFile, getFile };
+
+module.exports = { uploadFile, getFile};

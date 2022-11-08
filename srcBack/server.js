@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.static('public'));
 
-
 app.get('/s3Url', async (req, res) => {
     const url = await uploadFile();
     res.send({ url });
@@ -17,5 +16,6 @@ app.get('/s3UrlGet', async (req, res) => {
     const url2 = await getFile();
     res.send({ url2 });
 });
+
 
 app.listen(8080, () => console.log('Server Up!'));

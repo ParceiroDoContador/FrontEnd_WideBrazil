@@ -44,16 +44,16 @@ body {
     flex-direction: column;
 }
 
-.inVoice strong {
+button#downInput {
     font-size: 15px;
 }
 
-.inVoice a {
+button#downInput {
     text-decoration: none;
     color: #18978F;
 }
 
-.inVoice button:hover {
+button#downInput:hover {
     background-color: #71a19f;
     color: #fff;
     border: none;
@@ -64,7 +64,7 @@ body {
     cursor: pointer;
 }
 
-.inVoice button {
+button#downInput {
     background-color: #18978F;
     color: #fff;
     border: none;
