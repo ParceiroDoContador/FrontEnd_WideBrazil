@@ -37,7 +37,7 @@ body {
 }
 
 .importPlanilha button {
-    background-color: #18978F;
+    background-color: #17968e;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -113,6 +113,29 @@ body {
     color: #fff;
 }
 
+.tablink {
+    background-color: #17968e;
+    color: #010101;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+  
+  .tablink:hover {
+    background-color: #17968e;
+  }
+  
+  .tabcontent {
+    color: rgb(192, 1, 1);
+    display: none;
+    padding: 50px;
+    text-align: center;
+  }
+ 
 footer {
     position: absolute;
     bottom: 0;
