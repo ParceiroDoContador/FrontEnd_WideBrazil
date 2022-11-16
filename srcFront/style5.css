@@ -149,6 +149,7 @@ footer {
     font-size: small;
 }
 
-.tablink#home{
+.tablink#about{
     background-color: #fff;
-}
+    border-radius: 5px;
+    }

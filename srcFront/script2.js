@@ -1,6 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
-const tablink = document.querySelector('#tablink');
+
 
 
 dataForm.addEventListener('submit', async event => {
@@ -23,11 +23,6 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
 
 });
-
-
-
-
-    
 
 
 
