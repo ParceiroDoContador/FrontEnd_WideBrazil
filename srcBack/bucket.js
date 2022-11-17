@@ -20,6 +20,7 @@ const s3 = new aws.S3({
 
  async function uploadFile() {
    const fileName = 'planilha_wide.pdf';
+   
 
     const params = ({
         Bucket: bucketName,
@@ -40,7 +41,6 @@ async function getFile() {
 
     const getURL = await s3.getSignedUrlPromise('getObject', params);
     return getURL;
-
 }
 
 
