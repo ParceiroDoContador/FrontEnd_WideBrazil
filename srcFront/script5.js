@@ -1,7 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
 
-
 dataForm.addEventListener('submit', async event => {
     event.preventDefault();
 
@@ -15,19 +14,12 @@ dataForm.addEventListener('submit', async event => {
        headers: {
             'Content-Type': 'multipart/form-data',
       },
-      key: 'import1/planilha_wide.pdf',
-       body: dataFile
+      key: 'import4/planilha_wide.pdf',
+      body: dataFile
    });
 
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
 
 });
-
-
-
-
-
-
-
 

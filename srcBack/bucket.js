@@ -24,7 +24,6 @@ const s3 = new aws.S3({
 
     const params = ({
         Bucket: bucketName,
-        Key: fileName,
     });
 
     const uploadURL = await s3.getSignedUrlPromise('putObject', params);
@@ -43,6 +42,17 @@ async function getFile() {
     return getURL;
 }
 
+async function uploadText() {
+    const textName = 'nome_valor.json';
+
+    const params = ({
+        Bucket: bucketName,
+        Key: textName,
+    });
+
+    const uploadURL2 = await s3.getSignedUrlPromise('putObject', params);
+    return uploadURL2;
+}
 
 
-module.exports = { uploadFile, getFile};
+module.exports = { uploadFile, getFile, uploadText };

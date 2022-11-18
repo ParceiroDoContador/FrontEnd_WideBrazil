@@ -14,8 +14,8 @@ dataForm.addEventListener('submit', async event => {
        method: 'PUT',
        headers: {
             'Content-Type': 'multipart/form-data',
-      },
-      key: 'import1/planilha_wide.pdf',
+        },
+        key: 'import3/planilha_wide.pdf',
        body: dataFile
    });
 
@@ -23,11 +23,3 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
 
 });
-
-
-
-
-
-
-
-
