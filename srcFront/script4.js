@@ -1,6 +1,5 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
-import { fileName } from '../srcBack/bucket.js';
 
 
 dataForm.addEventListener('submit', async event => {
@@ -9,7 +8,7 @@ dataForm.addEventListener('submit', async event => {
     const dataFile = file.files[0];
 
     const { url } = await fetch('http://localhost:8080/s3Url').then(res => res.json());
-    fileName = `import3/${dataFile.name}`;
+    
     
 
    await fetch(url, {
@@ -17,11 +16,13 @@ dataForm.addEventListener('submit', async event => {
        headers: {
             'Content-Type': 'multipart/form-data',
         },
-        key: 'import3/planilha_wide.pdf',
+       
        body: dataFile
    });
 
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
 
+ 
 });
+

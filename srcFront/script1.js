@@ -1,4 +1,3 @@
-
 const downInput = document.querySelector('#downInput');
 const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
