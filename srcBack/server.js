@@ -9,7 +9,6 @@ app.use(express.static('public'));
 
 app.get('/s3Url', async (req, res) => {
     const url = await uploadFile();
-    
     res.send({ url });
 });
 

@@ -4,15 +4,15 @@ const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
 
 
 
-
 //tentar exportar o fileName do script.js para o bucket.js inves do ao contrario
-
 dotEnv.config();
 
 const region = 'sa-east-1';
 const bucketName = 'parceiro-do-contador-bucket'
 const accessKeyId = AWS_ACCESS_KEY_ID;
 const secretAccessKey = AWS_SECRET_ACCESS_KEY;
+
+
 
 const s3 = new aws.S3({
     region,
@@ -21,15 +21,15 @@ const s3 = new aws.S3({
     signatureVersion: 'v4',
 });
 
-
+var fileName = 'teste.pdf';
 
  async function uploadFile() {
-    const fileName = 'import1/planilha.pdf';
 
     let params = ({
         Bucket: bucketName,
-        Key: fileName
+        Key: fileName,
     });
+
 
     const uploadURL = await s3.getSignedUrlPromise('putObject', params);
     return uploadURL;

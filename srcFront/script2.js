@@ -6,7 +6,6 @@ const file = document.querySelector('#file');
 dataForm.addEventListener('submit', async event => {
     event.preventDefault();
 
-    const dataFile = file.files[0];
 
     const { url } = await fetch('http://localhost:8080/s3Url').then(res => res.json());
    
@@ -15,7 +14,6 @@ dataForm.addEventListener('submit', async event => {
        headers: {
             'Content-Type': 'multipart/form-data',
       },
-     
        body: dataFile
    });
 
@@ -25,11 +23,6 @@ dataForm.addEventListener('submit', async event => {
 });
 
 
-/*function  folderName() {
-    const dataFile = file.files[0];
-    let fileName = `import1/${dataFile.name}`;
-    return fileName;
-}*/
 
 
 
