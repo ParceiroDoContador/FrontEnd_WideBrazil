@@ -1,5 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
+import { fileName } from '../srcBack/bucket.js';
 
 
 dataForm.addEventListener('submit', async event => {
@@ -8,6 +9,7 @@ dataForm.addEventListener('submit', async event => {
     const dataFile = file.files[0];
 
     const { url } = await fetch('http://localhost:8080/s3Url').then(res => res.json());
+    fileName = `import3/${dataFile.name}`;
     
 
    await fetch(url, {

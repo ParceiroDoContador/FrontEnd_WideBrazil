@@ -9,16 +9,19 @@ app.use(express.static('public'));
 
 app.get('/s3Url', async (req, res) => {
     const url = await uploadFile();
+    
     res.send({ url });
 });
 
 app.get('/s3UrlGet', async (req, res) => {
     const url2 = await getFile();
+    
     res.send({ url2 });
 });
 
 app.get('/s3UrlPut', async (req, res) => {
     const url3 = await uploadText();
+    
     res.send({ url3 });
 });
 

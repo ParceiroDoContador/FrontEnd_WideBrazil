@@ -2,6 +2,8 @@ const aws = require('aws-sdk');
 const dotEnv = require('dotenv');
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
 
+//tentar exportar o fileName do script.js para o bucket.js inves do ao contrario
+
 
 
 dotEnv.config();
@@ -18,12 +20,13 @@ const s3 = new aws.S3({
     signatureVersion: 'v4',
 });
 
- async function uploadFile() {
-   const fileName = 'planilha_wide.pdf';
-   
+ export const fileName = '';
 
+ async function uploadFile() {
+  
     const params = ({
         Bucket: bucketName,
+        Key: fileName
     });
 
     const uploadURL = await s3.getSignedUrlPromise('putObject', params);
@@ -31,7 +34,6 @@ const s3 = new aws.S3({
 }
 
 async function getFile() {
-    const fileName = 'planilha_wide.pdf';
 
     const params = ({
         Bucket: bucketName,
