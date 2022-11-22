@@ -23,7 +23,6 @@ downInput.addEventListener('click', async event => {
     linkRef.download = 'planilha_wide.pdf';
     linkRef.target = '_blank';
     linkRef.click();
-
 });
 
 downInput.addEventListener('click', async event => {
@@ -31,10 +30,6 @@ downInput.addEventListener('click', async event => {
 
     const nome = document.getElementById('nomeCliente').value;
     const dolar = document.getElementById('valorDolar').value;
-    
-
-   
-  
     
     const { url3 } = await fetch('http://localhost:8080/s3UrlPut').then(res => res.json());
 

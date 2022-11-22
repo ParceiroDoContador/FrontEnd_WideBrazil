@@ -1,28 +1,23 @@
 const express = require('express');
 const cors = require('cors');
-const { uploadFile, getFile, uploadText} = require('./bucket');
+const { fazerUpload1, fazerDownload, fazerUploadTexto, fazerUpload4, fazerUpload2, fazerUpload3 } = require('./controladores');
 
 const app = express();
 
 app.use(cors());
 app.use(express.static('public'));
 
-app.get('/s3Url', async (req, res) => {
-    const url = await uploadFile();
-    res.send({ url });
-});
+app.get('/s3Url1', fazerUpload1);
 
-app.get('/s3UrlGet', async (req, res) => {
-    const url2 = await getFile();
-    
-    res.send({ url2 });
-});
+app.get('/s3Url2', fazerUpload2);
 
-app.get('/s3UrlPut', async (req, res) => {
-    const url3 = await uploadText();
-    
-    res.send({ url3 });
-});
+app.get('/s3Url3', fazerUpload3);
+
+app.get('/s3Url4', fazerUpload4);
+
+app.get('/s3UrlGet', fazerDownload);
+
+app.get('/s3UrlPut', fazerUploadTexto);
 
 
 app.listen(8080, () => console.log('Server Up!'));
