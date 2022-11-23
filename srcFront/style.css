@@ -139,6 +139,23 @@ button#downInput {
     color: #fff;
 }
 
+
+.dadosInput {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #18978F;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.dadosInput:focus {
+    outline: none;
+}
+
+
+
 footer {
     position: absolute;
     bottom: 0;
