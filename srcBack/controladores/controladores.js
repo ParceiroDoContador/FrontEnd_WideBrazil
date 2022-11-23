@@ -1,4 +1,9 @@
-const {uploadFile, getFile, uploadText} = require('./bucket')
+const {uploadFile, getFile, uploadText} = require('../bucket')
+const { knex } = require('../../DataBase/conexao.js')
+const bcrypt = require('bcrypt')
+const schemaLogin = require('../validacoes/schemaLogin')
+const fs = require('fs')
+
 
 const fazerUpload1 = async (req, res) => {
     try {
@@ -60,4 +65,33 @@ const fazerUploadTexto = async (req, res) => {
             }
 }
 
-module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto }
+const verificarLogin = async (req, res) => {
+    const { email, senha } = req.body
+
+    try {
+        await schemaLogin.validate(req.body)
+        const usuario = await knex('usuarios').where({ email }).first()
+
+        if (!usuario) {
+            return res.status(404).json('Usuário não encontrado')
+        }
+        const senhaCorreta = await bcrypt.compare(senha, usuario.senha)
+
+        if (!senhaCorreta) {
+            return res.status(400).json('Email ou senha incorretos')
+        }
+        const dadosUsuario = {
+            id: usuario.id,
+            email: usuario.email,
+        }
+        console.log(dadosUsuario)
+        return res.status(200).json(dadosUsuario)
+
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
+} 
+
+
+
+module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, verificarLogin}
