@@ -1,4 +1,4 @@
-const yup = require('yup')
+const yup = require('./yupConfig')
 
 const schemaLogin = yup.object().shape({
     email: yup.string().email().required('Obrigatório email e senha'),

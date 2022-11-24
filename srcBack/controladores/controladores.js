@@ -1,8 +1,22 @@
 const {uploadFile, getFile, uploadText} = require('../bucket')
-const { knex } = require('../../DataBase/conexao.js')
+const knex = require('../../BancoDeDados/conexao')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
 const fs = require('fs')
+
+
+const uploadLog = async (req, res) => {
+    const { nome } = req.body
+    const dataDoUpload = new date()
+    try {
+        const log = await knex('log').insert({nome, dataDoUpload})
+        res.status(200).send({ log });
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
+}
+
 
 
 const fazerUpload1 = async (req, res) => {
@@ -65,33 +79,42 @@ const fazerUploadTexto = async (req, res) => {
             }
 }
 
-const verificarLogin = async (req, res) => {
-    const { email, senha } = req.body
 
-    try {
-        await schemaLogin.validate(req.body)
-        const usuario = await knex('usuarios').where({ email }).first()
 
-        if (!usuario) {
-            return res.status(404).json('Usuário não encontrado')
-        }
-        const senhaCorreta = await bcrypt.compare(senha, usuario.senha)
+const login = async (req, res) => {
+  const { email, senha } = req.body
 
-        if (!senhaCorreta) {
-            return res.status(400).json('Email ou senha incorretos')
-        }
-        const dadosUsuario = {
-            id: usuario.id,
-            email: usuario.email,
-        }
-        console.log(dadosUsuario)
-        return res.status(200).json(dadosUsuario)
+  try {
+    await schemaLogin.validate(req.body)
+    const usuario = await knex('usuarios').where({ email }).first()
 
-    } catch (error) {
-        return res.status(400).json(error.message)
+    if (!usuario) {
+      return res.status(404).json({ mensagem: 'Usuário não encontrado' })
     }
-} 
+    const senhaCorreta = await bcrypt.compare(senha, usuario.senha)
+
+    if (!senhaCorreta) {
+      return res.status(400).json({ mensagem: 'Email ou senha não conferem' })
+    }
+
+    const dadosTokenUsuario = {
+      id: usuario.id,
+      nome: usuario.nome
+    }
+
+    const token = jwt.sign(dadosTokenUsuario, process.env.SENHA_JWT, { expiresIn: '7d' })
+
+    const { senha: _, ...dadosUsuario } = usuario
+
+    return res.status(200).json({
+      usuario: dadosUsuario,
+      token
+    })
+  } catch (error) {
+    return res.status(400).json(error.message)
+  }
+}
 
 
 
-module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, verificarLogin}
+module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, login, uploadLog}

@@ -8,9 +8,14 @@ file.addEventListener('change', () => {
         nome = file.files[0].name;
     }
 
-    let localStore = localStorage.setItem('InfoFile', nome)
-    console.log(localStorage.getItem('InfoFile'))
-    //fazer log dos nomes dos arquivos
+    fetch('http://localhost:8080/log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nome })
+    }).then(resposta => { 
+        console.log(resposta);
 });
 
 dataForm.addEventListener('submit', async event => {
