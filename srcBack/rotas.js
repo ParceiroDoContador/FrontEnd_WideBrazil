@@ -1,6 +1,6 @@
 const express = require('express')
 const { fazerUpload1, fazerDownload, fazerUploadTexto, fazerUpload4, fazerUpload2, fazerUpload3, login, uploadLog } = require('./controladores/controladores')
-const verificaLogin = require('./filtro/validarLogin')
+
 
 const rotas = express()
 

@@ -6,6 +6,13 @@ const infosForms = document.querySelector('#infosForms');
 
 downInput.addEventListener('click', async event => {
     event.preventDefault();
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('Você precisa estar logado para fazer download de arquivos');
+        window.location.href = 'http://localhost:3000/srcFront/page0.html';
+    }
+    
 
    const { url2 } = await fetch('http://localhost:8080/s3UrlGet').then(res => res.json());
 
@@ -27,6 +34,12 @@ downInput.addEventListener('click', async event => {
 
 downInput.addEventListener('click', async event => {
     event.preventDefault();
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('Você precisa estar logado para fazer download de arquivos');
+        window.location.href = 'http://localhost:3000/srcFront/page0.html';
+    }
 
     const nome = document.getElementById('nomeCliente').value;
     const dolar = document.getElementById('valorDolar').value;

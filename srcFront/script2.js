@@ -14,17 +14,22 @@ file.addEventListener('change', () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ nome })
-    }).then(resposta => { 
-        console.log(resposta);
+    }).then(resposta => {})
+
 });
 
 dataForm.addEventListener('submit', async event => {
     event.preventDefault();
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('Você precisa estar logado para fazer upload de arquivos');
+        window.location.href = 'http://localhost:3000/srcFront/page0.html';
+    }
 
     const dataFile = file.files[0]
-
     const { url } = await fetch('http://localhost:8080/s3Url1').then(res => res.json());
-   
+
    await fetch(url, {
        method: 'PUT',
        headers: {
@@ -33,6 +38,7 @@ dataForm.addEventListener('submit', async event => {
        body: dataFile
    });
       const dataUrl = url.split('?')[0];
-      console.log(dataUrl);      
+      console.log(dataUrl);
+      alert('Arquivo enviado com sucesso!');
 });
-});
+

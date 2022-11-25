@@ -1,15 +1,15 @@
 const {uploadFile, getFile, uploadText} = require('../bucket')
 const knex = require('../../BancoDeDados/conexao')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
 
 
 const uploadLog = async (req, res) => {
     const { nome } = req.body
-    const dataDoUpload = new date()
+    const data = new Date()
+    
     try {
-        const log = await knex('log').insert({nome, dataDoUpload})
+        const log = await knex('logarquivos').insert({nome, data})
         res.status(200).send({ log });
     } catch (error) {
         return res.status(400).json(error.message)
@@ -18,7 +18,7 @@ const uploadLog = async (req, res) => {
 
 const fazerUpload1 = async (req, res) => {
     try {
-        const url = await uploadFile('import1/','planilha_teste.pdf');
+        const url = await uploadFile('import1/','férias.pdf');
     res.status(200).send({ url });
     } catch (error) {
         console.log(error);
@@ -28,7 +28,7 @@ const fazerUpload1 = async (req, res) => {
 
 const fazerUpload2 = async (req, res) => {
     try {
-        const url = await uploadFile('Import2/','nome_valor.json');
+        const url = await uploadFile('Import2/','décimo.pdf');
     res.status(200).send({ url });
     } catch (error) {
         console.log(error);
@@ -38,7 +38,7 @@ const fazerUpload2 = async (req, res) => {
 
 const fazerUpload3 = async (req, res) => {
     try {
-        const url = await uploadFile('Import3/','nome_valor.json');
+        const url = await uploadFile('Import3/','flash.pdf');
     res.status(200).send({ url });
     } catch (error) {
         console.log(error);
@@ -48,7 +48,7 @@ const fazerUpload3 = async (req, res) => {
 
 const fazerUpload4 = async (req, res) => {
     try {
-        const url = await uploadFile('Import4/','nome_valor.json');
+        const url = await uploadFile('Import4/','seguro.pdf');
     res.status(200).send({ url });
     } catch (error) {
         console.log(error);
@@ -88,31 +88,28 @@ const login = async (req, res) => {
   try {
     await schemaLogin.validate(req.body)
     const usuario = await knex('usuarios').where({ email }).first()
-    console.log(usuario);
-    
 
     if (!usuario) {
       return res.status(404).json({ mensagem: 'Usuário não encontrado' })
     }
-    const senhaCorreta = await bcrypt.compare(senha, usuario.senha)
+
+    const senhaCorreta = senha === usuario.senha
 
     if (!senhaCorreta) {
       return res.status(400).json({ mensagem: 'Email ou senha não conferem' })
     }
-    const token = jwt.sign({ id: usuario.id },SENHA_JWT, { expiresIn: '8h' })
-    console.log(token);
 
+    const token = jwt.sign({ id: usuario.id },SENHA_JWT, { expiresIn: '7d' })
+    
     const { senha: _, ...dadosUsuario } = usuario
-
+    
     return res.status(200).json({
          usuario: dadosUsuario, 
          token 
         })
-
     } catch (error) {
         return res.status(400).json(error.message)
     }
 }
-
 
 module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, login, uploadLog}

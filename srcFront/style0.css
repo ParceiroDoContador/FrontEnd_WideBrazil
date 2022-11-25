@@ -59,7 +59,7 @@ button#login:hover {
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px;
+    margin-right: 10px;
     font-size: 15px;
     cursor: pointer;
 }
@@ -70,8 +70,11 @@ button#login {
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px;
+    margin-right: 10px;
     font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    
 }
 
 
@@ -83,6 +86,7 @@ button#login {
     margin: 10px;
     padding: 10px;
     font-size: 15px;
+
     
 }
 

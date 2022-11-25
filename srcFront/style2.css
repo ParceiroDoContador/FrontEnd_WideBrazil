@@ -30,10 +30,31 @@ body {
 }
 
 .logo2 {
-    width: 300px;
-    margin: 0 0 50px 0;
+    width: 250px;
+    margin: 20px 0 30px 0;
     justify-content: center;
     align-items: center;
+}
+
+#labelFile {
+    padding: 20px 10px;
+    width: 200px;
+    background-color: #17968e;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#labelFile:hover {
+    background-color: #71a19f;
+}
+
+#file {
+    display: none;
 }
 
 .importPlanilha button {
@@ -43,6 +64,7 @@ body {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+    text-transform: uppercase;
     font-size: 15px;
 }
 
@@ -68,8 +90,9 @@ body {
 .return {
     display: block;
     align-self: flex-start;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 60px;
+    margin-left: 50px;
+    margin-bottom: 80px;
 }
 
 .return button {
@@ -113,6 +136,7 @@ body {
     color: #fff;
 }
 
+
 .tablink {
     background-color: #17968e;
     color: #010101;
@@ -135,14 +159,6 @@ body {
     padding: 50px;
     text-align: center;
   }
-
-input#file {
-    
-
-
-
-    
-}
 
 
 

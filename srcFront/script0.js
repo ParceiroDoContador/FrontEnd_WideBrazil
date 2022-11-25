@@ -14,18 +14,16 @@ infosForms.addEventListener('submit', async event => {
                 email: email.value,
                 senha: senha.value
             })
-        }).then(data => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                window.location.href = 'http://localhost:3000/srcFront/page1.html';
-            } else {
-                alert('Email ou senha incorretos!');
+        }).then(resposta => {
+            if (resposta.status === 200) {
+                resposta.json().then(dados => {
+                    localStorage.setItem('token', dados.token)
+                    window.location.href = 'http://localhost:3000/srcFront/page1.html';
+                })
+            } else if (resposta.status === 400) {
+                alert('Usuário ou senha inválidos');
             }
-        })
-    }
-)
-
-
+             });
 
 
 
@@ -86,4 +84,4 @@ infosForms.addEventListener('submit', async event => {
         }
     )
 }*/
-
+})
