@@ -4,9 +4,7 @@ const verificaLogin = require('./filtro/validarLogin')
 
 const rotas = express()
 
-rotas.post('login', login)
-
-rotas.use(verificaLogin)
+rotas.post('/login', login)
 
 rotas.post('/log', uploadLog)
 

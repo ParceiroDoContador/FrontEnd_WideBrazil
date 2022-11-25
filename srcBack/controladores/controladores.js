@@ -3,7 +3,6 @@ const knex = require('../../BancoDeDados/conexao')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
-const fs = require('fs')
 
 
 const uploadLog = async (req, res) => {
@@ -16,8 +15,6 @@ const uploadLog = async (req, res) => {
         return res.status(400).json(error.message)
     }
 }
-
-
 
 const fazerUpload1 = async (req, res) => {
     try {
@@ -84,9 +81,15 @@ const fazerUploadTexto = async (req, res) => {
 const login = async (req, res) => {
   const { email, senha } = req.body
 
+  if (!email || !senha) {
+    return res.status(400).json('Email e senha são obrigatórios')
+  }
+  
   try {
     await schemaLogin.validate(req.body)
     const usuario = await knex('usuarios').where({ email }).first()
+    console.log(usuario);
+    
 
     if (!usuario) {
       return res.status(404).json({ mensagem: 'Usuário não encontrado' })
@@ -96,25 +99,20 @@ const login = async (req, res) => {
     if (!senhaCorreta) {
       return res.status(400).json({ mensagem: 'Email ou senha não conferem' })
     }
-
-    const dadosTokenUsuario = {
-      id: usuario.id,
-      nome: usuario.nome
-    }
-
-    const token = jwt.sign(dadosTokenUsuario, process.env.SENHA_JWT, { expiresIn: '7d' })
+    const token = jwt.sign({ id: usuario.id },SENHA_JWT, { expiresIn: '8h' })
+    console.log(token);
 
     const { senha: _, ...dadosUsuario } = usuario
 
     return res.status(200).json({
-      usuario: dadosUsuario,
-      token
-    })
-  } catch (error) {
-    return res.status(400).json(error.message)
-  }
-}
+         usuario: dadosUsuario, 
+         token 
+        })
 
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
+}
 
 
 module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, login, uploadLog}

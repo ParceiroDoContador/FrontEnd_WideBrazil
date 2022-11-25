@@ -35,12 +35,4 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);      
 });
-
-
-
-
-
-
-
-
-
+});
