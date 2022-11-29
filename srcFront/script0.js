@@ -18,7 +18,7 @@ infosForms.addEventListener('submit', async event => {
             if (resposta.status === 200) {
                 resposta.json().then(dados => {
                     localStorage.setItem('token', dados.token)
-                    window.location.href = 'http://localhost:3000/srcFront/page1.html';
+                    window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page1.html';
                 })
             } else if (resposta.status === 400) {
                 alert('Usuário ou senha inválidos');
