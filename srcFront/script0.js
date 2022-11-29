@@ -5,7 +5,7 @@ const infosForms = document.querySelector('#infosForms')
 infosForms.addEventListener('submit', async event => {
     event.preventDefault();
 
-        await fetch('http://10.44.21.225/login', {
+        await fetch('https://10.44.21.225/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
