@@ -5,7 +5,7 @@ const infosForms = document.querySelector('#infosForms')
 infosForms.addEventListener('submit', async event => {
     event.preventDefault();
 
-        await fetch('http://localhost:8080/login', {
+        await fetch('http://wide.parceirodocontador.com.br/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
