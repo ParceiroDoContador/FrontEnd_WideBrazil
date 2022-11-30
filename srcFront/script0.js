@@ -4,8 +4,8 @@ const infosForms = document.querySelector('#infosForms')
 
 infosForms.addEventListener('submit', async event => {
     event.preventDefault();
-
-        await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/login', {
+    
+        await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
