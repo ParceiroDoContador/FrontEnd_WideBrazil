@@ -1,4 +1,4 @@
-const knex = require('../../BancoDeDados/conexao')
+/*const knex = require('../../BancoDeDados/conexao')
 const jwt = require('jsonwebtoken')
 
 const verificaLogin = async (req, res, next) => {
@@ -27,4 +27,4 @@ const verificaLogin = async (req, res, next) => {
 }
 
 
-module.exports = verificaLogin
+module.exports = verificaLogin*/

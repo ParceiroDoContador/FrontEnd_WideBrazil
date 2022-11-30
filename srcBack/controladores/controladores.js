@@ -28,7 +28,7 @@ const fazerUpload1 = async (req, res) => {
 
 const fazerUpload2 = async (req, res) => {
     try {
-        const url = await uploadFile('Import2/','décimo.pdf');
+        const url = await uploadFile('import2/','décimo.pdf');
     res.status(200).send({ url });
     } catch (error) {
         console.log(error);
