@@ -38,7 +38,7 @@ downInput.addEventListener('click', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer download de arquivos');
-        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
+        window.location.href = 'http://localhost:3000/srcFront/page0.html';
     }
 
     const nome = document.getElementById('nomeCliente').value;

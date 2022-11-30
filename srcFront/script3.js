@@ -25,7 +25,7 @@ dataForm.addEventListener('submit', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer upload de arquivos');
-        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
+        window.location.href = 'http://localhost:3000/srcFront/page0.html';
     }
     
 
