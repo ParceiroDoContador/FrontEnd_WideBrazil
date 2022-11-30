@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./srcBack/server.js"
+    "start": "nodemon ./srcBack/server.js",
+    "production": "node ./srcBack/server.js"
+    
   },
   "repository": {
     "type": "git",
@@ -37,5 +39,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "16.x"
   }
+
 }
