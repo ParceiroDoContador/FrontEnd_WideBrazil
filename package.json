@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./srcBack/server.js",
-    "production": "node ./srcBack/server.js"
-    
+    "start": "nodemon ./src/server.js",
+    "production": "node ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "multer-s3": "^3.0.1",
     "node": "^14.21.0",
     "pg": "^8.8.0",
+    "pm2": "^5.2.2",
     "yup": "^0.32.11",
     "yup-locales": "^1.2.10"
   },
@@ -43,5 +43,4 @@
   "engines": {
     "node": "16.x"
   }
-
 }
