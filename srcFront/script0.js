@@ -6,7 +6,7 @@ infosForms.addEventListener('submit', async event => {
     event.preventDefault();
 
     try {
-        await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/srcBack/login',{
+        await fetch('/login',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
