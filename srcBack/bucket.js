@@ -1,14 +1,14 @@
 const aws = require('aws-sdk');
 const dotEnv = require('dotenv');
-const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
+//const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
 
 dotEnv.config();
 
 
 const region = 'sa-east-1';
 const bucketName = 'parceiro-do-contador-bucket'
-const accessKeyId = AWS_ACCESS_KEY_ID;
-const secretAccessKey = AWS_SECRET_ACCESS_KEY;
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 const s3 = new aws.S3({
     region,
