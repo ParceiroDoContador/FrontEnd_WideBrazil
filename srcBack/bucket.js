@@ -1,9 +1,7 @@
 const aws = require('aws-sdk');
 const dotEnv = require('dotenv');
 //const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../.env');
-
 dotEnv.config();
-
 
 const region = 'sa-east-1';
 const bucketName = 'parceiro-do-contador-bucket'
