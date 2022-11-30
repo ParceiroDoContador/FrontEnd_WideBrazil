@@ -7,7 +7,7 @@ file.addEventListener('change', () => {
         nome = file.files[0].name;
     }
 
-    fetch('http://localhost:8080/log', {
+    fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/log', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -23,11 +23,11 @@ dataForm.addEventListener('submit', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer upload de arquivos');
-        window.location.href = 'http://localhost:3000/srcFront/page0.html';
+        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
     }
 
     const dataFile = file.files[0];
-    const { url } = await fetch('http://localhost:8080/s3Url3').then(res => res.json());
+    const { url } = await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/s3Url3').then(res => res.json());
     
    await fetch(url, {
        method: 'PUT',
