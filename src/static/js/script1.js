@@ -3,7 +3,7 @@ const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
 const valorDolar = document.querySelector('#valorDolar');
 const infosForms = document.querySelector('#infosForms');
-let urlServer = 'https://wide-brazil-web-app-pd9vq.ondigitalocean.app'
+const urlServer = 'https://wide.parceirodocontador.com.br'
 
 downInput.addEventListener('click', async event => {
     event.preventDefault();

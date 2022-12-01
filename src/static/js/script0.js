@@ -1,7 +1,7 @@
 const email = document.querySelector('#email');
 const senha = document.querySelector('#senha');
 const infosForms = document.querySelector('#infosForms')
-const urlServer = 'https://wide-brazil-web-app-pd9vq.ondigitalocean.app'
+const urlServer = 'https://wide.parceirodocontador.com.br'
 
 infosForms.addEventListener('submit', async event => {
     event.preventDefault();

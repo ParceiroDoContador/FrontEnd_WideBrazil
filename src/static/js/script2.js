@@ -1,6 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
-const urlServer = 'https://wide-brazil-web-app-pd9vq.ondigitalocean.app'
+const urlServer = 'https://wide.parceirodocontador.com.br'
 
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'
