@@ -15,6 +15,6 @@ rotas.get('/s3UrlGet', fazerDownload)
 
 rotas.get('/s3UrlPut', fazerUploadTexto)
 
-rotas.get('/upload-url', fazerUpload)
+rotas.get('/upload-url:folderNumber', fazerUpload)
 
 module.exports = rotas
