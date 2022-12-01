@@ -16,44 +16,53 @@ const uploadLog = async (req, res) => {
     }
 }
 
-const fazerUpload1 = async (req, res) => {
+ function getFileName(folderNumber) {
+    let fileName = "";
+
+    switch(folderNumber) {
+        case "1" : {
+            fileName = "férias.pdf";
+            break;
+        }
+
+        case "2" : {
+            fileName = "décimo.pdf";
+            break;
+        }
+
+        case "3" : {
+            fileName = "flash.pdf";
+            break;
+    }
+        case "4": {
+            fileName = "seguro.pdf";
+    }
+
+    return fileName
+}}
+
+const fazerUpload = async (req, res) => {
+
+    const { folderNumber } = req.query;
+
     try {
-        const url = await uploadFile('import1/','férias.pdf');
-    res.status(200).send({ url });
+        if (!folderNumber) {
+            return res.status(400).json({ error: "Informe o numero da pasta" })
+        }
+
+        let fileName = getFileName(folderNumber);
+
+        if (!fileName) {
+            return res.status(400).json({ error: "Número de pasta inválido" })
+        }
+
+        const url = await uploadFile(`import${folderNumber}/`, fileName);
+
+        return res.status(200).send({ url });
     } catch (error) {
         console.log(error);
         return res.status(400).send({ error: 'Erro ao fazer upload do arquivo' });
     }
-}
-
-const fazerUpload2 = async (req, res) => {
-    try {
-        const url = await uploadFile('import2/','décimo.pdf');
-    res.status(200).send({ url });
-    } catch (error) {
-        console.log(error);
-        return res.status(400).send({ error: 'Erro ao fazer upload do arquivo' });
-    }
-}
-
-const fazerUpload3 = async (req, res) => {
-    try {
-        const url = await uploadFile('Import3/','flash.pdf');
-    res.status(200).send({ url });
-    } catch (error) {
-        console.log(error);
-        return res.status(400).send({ error: 'Erro ao fazer upload do arquivo' });
-    }
-}
-
-const fazerUpload4 = async (req, res) => {
-    try {
-        const url = await uploadFile('Import4/','seguro.pdf');
-    res.status(200).send({ url });
-    } catch (error) {
-        console.log(error);
-        return res.status(400).send({ error: 'Erro ao fazer upload do arquivo' });
-    }       
 }
 
 const fazerDownload = async (req, res) => {
@@ -75,8 +84,6 @@ const fazerUploadTexto = async (req, res) => {
                 return res.status(400).send({ error: 'Erro ao fazer upload do arquivo' });
             }
 }
-
-
 
 const login = async (req, res) => {
   const { email, senha } = req.body
@@ -113,4 +120,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { fazerUpload1,fazerUpload2,fazerUpload3,fazerUpload4,fazerDownload, fazerUploadTexto, login, uploadLog}
+module.exports = { fazerDownload, fazerUploadTexto, login, uploadLog, fazerUpload}

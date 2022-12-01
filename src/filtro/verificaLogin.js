@@ -1,4 +1,4 @@
-/*const knex = require('../../BancoDeDados/conexao')
+const knex = require('../../BancoDeDados/conexao')
 const jwt = require('jsonwebtoken')
 
 const verificaLogin = async (req, res, next) => {
@@ -10,7 +10,7 @@ const verificaLogin = async (req, res, next) => {
 
     try {
         const token = authorization.replace('Bearer', '').trim();
-        const { id } = jwt.verify(token, process.env.JWT_KEY);
+        const { id } = jwt.verify(token, process.env.SENHA_JWT);
         const usuario = await knex('usuarios').where({ id }).first();
 
         if (!usuario) {
@@ -27,4 +27,4 @@ const verificaLogin = async (req, res, next) => {
 }
 
 
-module.exports = verificaLogin*/
+module.exports = verificaLogin

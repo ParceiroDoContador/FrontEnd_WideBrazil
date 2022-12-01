@@ -3,6 +3,7 @@ const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
 const valorDolar = document.querySelector('#valorDolar');
 const infosForms = document.querySelector('#infosForms');
+let urlServer = 'https://wide-brazil-web-app-pd9vq.ondigitalocean.app'
 
 downInput.addEventListener('click', async event => {
     event.preventDefault();
@@ -10,11 +11,15 @@ downInput.addEventListener('click', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer download de arquivos');
-        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
+        window.location.href = `${urlServer}/static/page0.html`;
     }
     
 
-   const { url2 } = await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/s3UrlGet').then(res => res.json());
+   const { url2 } = await fetch(`${urlServer}/s3UrlGet`, {
+    headers: {
+        authorization: token
+    }
+   }).then(res => res.json());
 
     await fetch(url2, {
         method: 'GET',
@@ -38,13 +43,17 @@ downInput.addEventListener('click', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer download de arquivos');
-        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
+        window.location.href = `${urlServer}/static/page0.html`;
     }
 
     const nome = document.getElementById('nomeCliente').value;
     const dolar = document.getElementById('valorDolar').value;
     
-    const { url3 } = await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/s3UrlPut').then(res => res.json());
+    const { url3 } = await fetch(`${urlServer}/s3UrlPut`, {
+        headers: {
+            authorization: token
+        }
+    }).then(res => res.json());
 
     await fetch(url3, {
         method: 'PUT',

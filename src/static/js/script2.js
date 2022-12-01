@@ -1,6 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
-
+const urlServer = 'https://wide-brazil-web-app-pd9vq.ondigitalocean.app'
 
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'
@@ -8,7 +8,7 @@ file.addEventListener('change', () => {
         nome = file.files[0].name;
     }
 
-    fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/log', {
+    fetch(`${urlServer}/log`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,11 +24,14 @@ dataForm.addEventListener('submit', async event => {
 
     if (!token) {
         alert('Você precisa estar logado para fazer upload de arquivos');
-        window.location.href = 'http://wide.parceirodocontador.com.br/srcFront/page0.html';
+        window.location.href = `${urlServer}/static/page0.html`;
     }
 
     const dataFile = file.files[0]
-    const { url } = await fetch('https://wide-brazil-web-app-pd9vq.ondigitalocean.app/s3Url1').then(res => res.json());
+    const { url } = await fetch(`${urlServer}/upload-url?folderNumber=1`, {
+    headers: {
+    authorization: token
+    }}).then(res => res.json());
 
    await fetch(url, {
        method: 'PUT',
