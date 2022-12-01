@@ -27,7 +27,7 @@ const s3 = new aws.S3({
 }
 
 async function getFile() {
-    fileName = 'nome_valor.json';
+    fileName = 'invoice.pdf';
 
     const params = ({
         Bucket: bucketName,

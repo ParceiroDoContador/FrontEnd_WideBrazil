@@ -49,8 +49,6 @@ const uploadLog = async (req, res) => {
 const fazerUpload = async (req, res) => {
     const { folderNumber } = req.query;
 
-    console.log(req.query);
-
     try {
         if (!folderNumber) {
             return res.status(400).json({ error: "Informe o numero da pasta" })
