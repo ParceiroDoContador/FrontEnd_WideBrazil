@@ -1,6 +1,6 @@
 const express = require('express')
 const { fazerDownload, fazerUploadTexto, login, uploadLog, fazerUpload } = require('./controladores/controladores')
-const { verificaLogin } = require('./filtro/verificaLogin.js')
+const  verificaLogin  = require('./filtro/verificaLogin.js')
 
 const rotas = express()
 
