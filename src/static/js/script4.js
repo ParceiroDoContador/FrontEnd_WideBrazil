@@ -28,7 +28,7 @@ dataForm.addEventListener('submit', async event => {
     }
 
     const dataFile = file.files[0]
-    const { url } = await fetch(`${urlServer}/upload-url?folderNumber='3'`, {
+    const { url } = await fetch(`${urlServer}/upload-url?folderNumber=3`, {
     headers: {
     authorization: token
     }}).then(res => res.json());
