@@ -20,29 +20,36 @@ const uploadLog = async (req, res) => {
     let fileName = "";
 
     switch(folderNumber) {
-        case 1 : {
+        case '1' : {
             fileName = "férias.pdf";
+            break
             
         }
 
-        case 2 : {
+        case '2' : {
             fileName = "décimo.pdf";
+            break
             
         }
 
-        case 3 : {
+        case '3' : {
             fileName = "flash.pdf";
+            break
             
     }
-        case 4 :{
+        case '4' :{
             fileName = "seguro.pdf";
+            break
     }
-
-    return fileName
-}}
+   
+}
+    return fileName;
+}
 
 const fazerUpload = async (req, res) => {
     const { folderNumber } = req.query;
+
+    console.log(req.query);
 
     try {
         if (!folderNumber) {
