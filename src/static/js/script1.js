@@ -54,15 +54,19 @@ downInput.addEventListener('click', async event => {
         headers: {
             authorization: token
         }
-    })
+    }).then(res => res.json());
 
     await fetch(url3, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ nome, cotacao_dolar })
     }).then(resposta => { console.log(resposta) })
+
+    const dataUrl3 = url3.split('?')[0];
+    console.log(dataUrl3);
+    
         
     await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
