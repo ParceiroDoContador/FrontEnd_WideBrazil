@@ -46,11 +46,9 @@ downInput.addEventListener('click', async event => {
     }
     
     const nome = document.getElementById('nomeCliente').value;
-    console.log(nome);
     const cotacao_dolar = document.getElementById('valorDolar').value;
-    console.log(cotacao_dolar);
 
-    const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
+    const { url3 } = await fetch(`${urlServer}/s3UrlPut`, {
         headers: {
             authorization: token
         }
@@ -67,12 +65,16 @@ downInput.addEventListener('click', async event => {
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
 
+
+    const { urlPipe } = await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(res => {
+        console.log(res);
+    })
         
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
+    await fetch(urlPipe).then(resposta => {
         console.log(resposta);
-    
         if(resposta.status === 204) {
-          setTimeout(downloadInvoice(), 30000)
+            alert('Script rodado com sucesso');
+            downloadInvoice();
         } else {
             alert('Erro ao rodar o script');
         }
