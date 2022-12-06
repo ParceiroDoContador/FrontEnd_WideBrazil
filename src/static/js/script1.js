@@ -67,7 +67,7 @@ downInput.addEventListener('click', async event => {
         method: 'GET'
     }).then(resposta => {
         console.log(resposta);
-        console.log(JSON.stringify({resposta.body}));
+    
         if(resposta.status === 204) {
             downloadInvoice();
         } else {
