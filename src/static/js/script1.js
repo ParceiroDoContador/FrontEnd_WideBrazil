@@ -67,14 +67,14 @@ downInput.addEventListener('click', async event => {
 
     await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
-        if(resposta.status === 204) {
-            setTimeout(() => {
+        
+        setTimeout(() => {
+            if (resposta.status === 204) {
                 downloadInvoice();
-            }, 40000);
-        } else {
-            alert('Erro ao rodar o script');
-        }
-    })
+            }
+        }, 40000);
+        })
+            
 
     nomeCliente.value = '';
     valorDolar.value = '';
