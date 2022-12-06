@@ -1,4 +1,3 @@
-const { stringify } = require("querystring");
 
 const downInput = document.querySelector('#downInput');
 const linkRef = document.querySelector('#linkRef');
@@ -64,7 +63,9 @@ downInput.addEventListener('click', async event => {
         body: JSON.stringify({ nome, cotacao_dolar })
     }).then(resposta => {})*/
         
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
+    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/', {
+        method: 'GET'
+    }).then(resposta => {
         console.log(resposta);
         console.log(JSON.stringify(resposta.body));
         if(resposta.status === 204) {
