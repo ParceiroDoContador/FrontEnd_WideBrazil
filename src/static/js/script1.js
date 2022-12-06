@@ -48,7 +48,7 @@ downInput.addEventListener('click', async event => {
     const nome = document.getElementById('nomeCliente').value;
     const cotacao_dolar = document.getElementById('valorDolar').value;
 
-    const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
+    /*const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
         headers: {
             authorization: token
         }
@@ -60,7 +60,7 @@ downInput.addEventListener('click', async event => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ nome, cotacao_dolar })
-    }).then(resposta => {})
+    }).then(resposta => {})*/
         
     await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         if(resposta.body === true) {
@@ -69,8 +69,6 @@ downInput.addEventListener('click', async event => {
             alert('Erro ao rodar o script');
         }
     })
-
-
 
     nomeCliente.value = '';
     valorDolar.value = '';
