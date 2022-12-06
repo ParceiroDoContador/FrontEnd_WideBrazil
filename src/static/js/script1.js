@@ -1,3 +1,5 @@
+const { stringify } = require("querystring");
+
 const downInput = document.querySelector('#downInput');
 const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
@@ -64,7 +66,7 @@ downInput.addEventListener('click', async event => {
         
     await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
-        console.log(resposta.body);;
+        console.log(JSON.stringify(resposta.body));
         if(resposta.status === 204) {
             downloadInvoice();
         } else {
