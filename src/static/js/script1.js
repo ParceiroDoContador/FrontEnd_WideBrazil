@@ -65,14 +65,12 @@ downInput.addEventListener('click', async event => {
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
 
-
-    const { urlPipe } = await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(res => res.json());
-        
-    await fetch(urlPipe).then(resposta => {
+    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
         if(resposta.status === 204) {
-            alert('Script rodado com sucesso');
-            downloadInvoice();
+            setTimeout(() => {
+                downloadInvoice();
+            }, 40000);
         } else {
             alert('Erro ao rodar o script');
         }
