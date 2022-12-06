@@ -27,10 +27,9 @@ const s3 = new aws.S3({
 }
 
 async function getFile() {
-    
     const params = ({
         Bucket: bucketName,
-        Key: 'invoice.pdf'
+        Key: 'arquivos/invoice.pdf'
     });
 
     const getURL = await s3.getSignedUrlPromise('getObject', params);

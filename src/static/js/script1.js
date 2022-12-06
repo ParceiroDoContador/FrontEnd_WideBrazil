@@ -28,7 +28,7 @@ try {
         console.log(dataUrl2);
     
         linkRef.href = `${dataUrl2}`;
-        linkRef.download = 'invoice.pdf';
+        linkRef.download = 'arquivos/invoice.pdf';
         linkRef.target = '_blank';
         linkRef.click();
     
@@ -67,7 +67,7 @@ downInput.addEventListener('click', async event => {
         method: 'GET'
     }).then(resposta => {
         console.log(resposta);
-        console.log(JSON.stringify(resposta.body));
+        console.log(JSON.stringify({resposta.body}));
         if(resposta.status === 204) {
             downloadInvoice();
         } else {
