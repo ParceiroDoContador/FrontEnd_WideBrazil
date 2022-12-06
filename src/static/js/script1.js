@@ -72,7 +72,7 @@ downInput.addEventListener('click', async event => {
         console.log(resposta);
     
         if(resposta.status === 204) {
-            downloadInvoice();
+          setTimeout(downloadInvoice(), 30000)
         } else {
             alert('Erro ao rodar o script');
         }
