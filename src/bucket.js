@@ -28,7 +28,6 @@ const s3 = new aws.S3({
 
 async function getFile() {
     
-
     const params = ({
         Bucket: bucketName,
         Key: 'invoice.pdf'

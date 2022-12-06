@@ -27,7 +27,7 @@ try {
         console.log(dataUrl2);
     
         linkRef.href = `${dataUrl2}`;
-        linkRef.download = 'planilha_wide.pdf';
+        linkRef.download = 'invoice.pdf';
         linkRef.target = '_blank';
         linkRef.click();
     
@@ -46,9 +46,9 @@ downInput.addEventListener('click', async event => {
     }
     
     const nome = document.getElementById('nomeCliente').value;
-    const dolar = document.getElementById('valorDolar').value;
+    const cotacao_dolar = document.getElementById('valorDolar').value;
 
-   /* const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
+    const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
         headers: {
             authorization: token
         }
@@ -59,16 +59,18 @@ downInput.addEventListener('click', async event => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nome, dolar })
-    }).then(resposta => {})*/
+        body: JSON.stringify({ nome, cotacao_dolar })
+    }).then(resposta => {})
         
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net').then(res => {
-        if(res.status === 200) {
+    await fetch('https://eof0s61ih3lbarl.m.pipedream.net').then(resposta => {
+        if(resposta.body === true) {
             downloadInvoice();
         } else {
-            alert('Erro ao baixar arquivo');
+            alert('Erro ao rodar o script');
         }
     })
+
+
 
     nomeCliente.value = '';
     valorDolar.value = '';
