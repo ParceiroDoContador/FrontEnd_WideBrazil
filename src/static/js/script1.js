@@ -62,7 +62,7 @@ downInput.addEventListener('click', async event => {
         body: JSON.stringify({ nome, cotacao_dolar })
     }).then(resposta => {})
         
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net').then(resposta => {
+    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         if(resposta.body === true) {
             downloadInvoice();
         } else {
