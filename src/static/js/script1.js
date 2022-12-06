@@ -63,13 +63,11 @@ downInput.addEventListener('click', async event => {
         body: JSON.stringify({ nome, cotacao_dolar })
     }).then(resposta => {})*/
         
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/', {
-        method: 'GET'
-    }).then(resposta => {
+    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
     
-        if(resposta.status === 204) {
-            downloadInvoice();
+        if(resposta) {
+            setTimeout(downloadInvoice(), 30000)
         } else {
             alert('Erro ao rodar o script');
         }
