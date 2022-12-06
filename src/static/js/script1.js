@@ -72,7 +72,7 @@ downInput.addEventListener('click', async event => {
             if (resposta.status === 204) {
                 downloadInvoice();
             }
-        }, 40000);
+        }, 10000);
         })
             
 
