@@ -66,9 +66,7 @@ downInput.addEventListener('click', async event => {
     console.log(dataUrl3);
 
 
-    const { urlPipe } = await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(res => {
-        console.log(res);
-    })
+    const { urlPipe } = await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(res => res.json());
         
     await fetch(urlPipe).then(resposta => {
         console.log(resposta);
