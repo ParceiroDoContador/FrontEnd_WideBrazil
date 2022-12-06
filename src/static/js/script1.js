@@ -1,4 +1,3 @@
-
 const downInput = document.querySelector('#downInput');
 const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
@@ -47,9 +46,11 @@ downInput.addEventListener('click', async event => {
     }
     
     const nome = document.getElementById('nomeCliente').value;
+    console.log(nome);
     const cotacao_dolar = document.getElementById('valorDolar').value;
+    console.log(cotacao_dolar);
 
-    /*const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
+    const {url3} = await fetch(`${urlServer}/s3UrlPut`, {
         headers: {
             authorization: token
         }
@@ -61,12 +62,12 @@ downInput.addEventListener('click', async event => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ nome, cotacao_dolar })
-    }).then(resposta => {})*/
+    }).then(resposta => { console.log(resposta) })
         
     await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
         console.log(resposta);
     
-        if(resposta) {
+        if(resposta.status === 204) {
             setTimeout(downloadInvoice(), 30000)
         } else {
             alert('Erro ao rodar o script');

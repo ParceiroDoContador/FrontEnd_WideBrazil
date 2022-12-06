@@ -37,7 +37,7 @@ async function getFile() {
 }
 
 async function uploadText() {
-    const textName = 'nome_valor.json';
+    const textName = 'arquivos/j_son.json';
 
     const params = ({
         Bucket: bucketName,
