@@ -65,7 +65,7 @@ downInput.addEventListener('click', async event => {
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
 
-    await fetch('https://eof0s61ih3lbarl.m.pipedream.net/').then(resposta => {
+    await fetch('https://eo1beseq85ydf7a.m.pipedream.net/').then(resposta => {
         console.log(resposta);
        if (resposta.status === 204) {
         alert('Aguarde o InVoice ser baixado')    
