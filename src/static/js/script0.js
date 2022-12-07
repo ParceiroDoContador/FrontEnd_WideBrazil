@@ -22,7 +22,7 @@ infosForms.addEventListener('submit', async event => {
                     localStorage.setItem('token', dados.token)
                     window.location.href = `${urlServer}/static/page1.html`;
                 })
-            } else if (resposta.status === 400) {
+            } else {
                 alert('Usuário ou senha inválidos');
             }
              });

@@ -27,9 +27,11 @@ const s3 = new aws.S3({
 }
 
 async function getFile() {
+    const textName =  'arquivos/invoice.pdf'
+
     const params = ({
         Bucket: bucketName,
-        Key: 'arquivos/invoice.pdf'
+        Key: textName
     });
 
     const getURL = await s3.getSignedUrlPromise('getObject', params);
@@ -37,11 +39,11 @@ async function getFile() {
 }
 
 async function uploadText() {
-    const textName = 'arquivos/j_son.json';
+    const txtName = 'arquivos/j_son.json';
 
     const params = ({
         Bucket: bucketName,
-        Key: textName,
+        Key: txtName,
     });
 
     const uploadURL2 = await s3.getSignedUrlPromise('putObject', params);

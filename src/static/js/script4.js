@@ -43,4 +43,8 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
+
+      await fetch('https://eodwdeby2kodbgc.m.pipedream.net').then(res => {
+        console.log(res);
+    })
 });
