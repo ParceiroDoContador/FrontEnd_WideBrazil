@@ -44,7 +44,7 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
 
-      await fetch('https://eodwdeby2kodbgc.m.pipedream.net').then(res => {
+      await fetch('https://eoh9f2jk9zgxm7i.m.pipedream.net').then(res => {
         console.log(res);
     })
 });

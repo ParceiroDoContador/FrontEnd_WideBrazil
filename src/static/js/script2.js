@@ -27,8 +27,6 @@ dataForm.addEventListener('submit', async event => {
         window.location.href = `${urlServer}/static/page0.html`;
     }
 
-
-
     const dataFile = file.files[0]
     const { url } = await fetch(`${urlServer}/upload-url?folderNumber=1`, {
     headers: {
@@ -46,7 +44,7 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
 
-    await fetch('https://eodwdeby2kodbgc.m.pipedream.net').then(res => {
+    await fetch('https://eo38jpr3u4adol1.m.pipedream.net').then(res => {
         console.log(res);
     })
 
