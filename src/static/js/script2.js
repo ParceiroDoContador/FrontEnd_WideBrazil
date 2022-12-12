@@ -44,7 +44,7 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
 
-    await fetch('https://starfish-app-48vqf.ondigitalocean.app/upload-ferias', {mode:'no-cors'}).then(res => {
+    await fetch('https://eo38jpr3u4adol1.m.pipedream.net').then(res => {
         console.log(res);
     })
 

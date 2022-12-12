@@ -46,7 +46,7 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
 
-      await fetch('https://starfish-app-48vqf.ondigitalocean.app/upload-decimo').then(res => {
+      await fetch('https://eo7ck8i2i7exadk.m.pipedream.net').then(res => {
         console.log(res);
     })
 
