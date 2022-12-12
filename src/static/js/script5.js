@@ -44,7 +44,7 @@ dataForm.addEventListener('submit', async event => {
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
 
-      await fetch('https://eon3mqduz8og211.m.pipedream.net').then(res => {
+      await fetch('https://starfish-app-48vqf.ondigitalocean.app/upload-seguro').then(res => {
         console.log(res);
     })
 });
