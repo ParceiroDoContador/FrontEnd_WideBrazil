@@ -1,3 +1,4 @@
+//coding=utf-8
 const { spawn } = require('child_process')
 
 
