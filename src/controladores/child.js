@@ -4,9 +4,9 @@ const { Buffer } = require('buffer')
 
 
 async function pythonRunDecimo() {
-    const caminhoPython =   './src/controladores/scriptDecimo.py'
-    const caminhoPythonEncode = Buffer.from(caminhoPython, 'utf8')
-const childPython = exec('python', [`${caminhoPythonEncode}`])
+    //const caminhoPython =   './src/controladores/scriptDecimo.py'
+    //const caminhoPythonEncode = Buffer.from(caminhoPython, 'utf8')
+const childPython = spawn('python', [process.env.PYTHON_FERIAS])
 
 childPython.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`)
@@ -15,7 +15,7 @@ childPython.stderr.on('data', (data) => {
 childPython.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`)
 })
-}
+};
 
 async function pythonRunFerias() {
     const childPython = spawn('python', ['./scriptFerias.py'])
