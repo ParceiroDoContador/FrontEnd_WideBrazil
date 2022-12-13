@@ -52,6 +52,8 @@ const uploadLog = async (req, res) => {
     return fileName, pythonScript;
 }
 
+
+
 const fazerUpload = async (req, res) => {
     const { folderNumber } = req.query;
 
