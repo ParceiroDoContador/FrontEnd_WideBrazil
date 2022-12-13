@@ -2,6 +2,7 @@ const {uploadFile, getFile, uploadText} = require('../bucket')
 const knex = require('../../BancoDeDados/conexao')
 const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
+const { pythonRunDecimo, pythonRunFerias, pythonRunFlash, pythonRunInvoice, pythonRunSeguro } = require('./child')
 
 
 const uploadLog = async (req, res) => {
@@ -18,32 +19,37 @@ const uploadLog = async (req, res) => {
 
  function getFileName(folderNumber) {
     let fileName = "";
+    let pythonScript = "";
 
     switch(folderNumber) {
         case '1' : {
             fileName = "férias.pdf";
+            pythonScript = pythonRunFerias()
             break
             
         }
 
         case '2' : {
             fileName = "décimo.pdf";
+            pythonScript = pythonRunDecimo()
             break
             
         }
 
         case '3' : {
             fileName = "flash.pdf";
+            pythonScript = pythonRunFlash()
             break
             
     }
         case '4' :{
             fileName = "seguro.pdf";
+            pythonScript = pythonRunSeguro()
             break
     }
    
 }
-    return fileName;
+    return fileName, pythonScript;
 }
 
 const fazerUpload = async (req, res) => {
@@ -61,7 +67,7 @@ const fazerUpload = async (req, res) => {
         }
 
         const url = await uploadFile(`import${folderNumber}/`, fileName);
-
+        await pythonScript
         return res.status(200).send({ url });
     } catch (error) {
         console.log(error);
