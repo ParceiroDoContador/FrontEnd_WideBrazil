@@ -61,13 +61,14 @@ const fazerUpload = async (req, res) => {
         }
 
         let fileName = getFileName(folderNumber);
+        let pythonScript = getFileName(folderNumber);
 
         if (!fileName) {
             return res.status(400).json({ error: "Número de pasta inválido" })
         }
 
         const url = await uploadFile(`import${folderNumber}/`, fileName);
-        await pythonScript
+        pythonScript
         return res.status(200).send({ url });
     } catch (error) {
         console.log(error);
