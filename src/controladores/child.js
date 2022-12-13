@@ -3,7 +3,7 @@ const { spawn } = require('child_process')
 
 async function pythonRunDecimo() {
     let r = "r"
-const childPython = spawn('python', [`${r}./src/controladores/scriptDecimo.py`])
+const childPython = spawn('python', ['./src/controladores/scriptDecimo.py'])
 
 childPython.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`)
