@@ -1,11 +1,12 @@
 //coding=utf-8
 const { spawn } = require('child_process')
-const utf8 = require('utf8')
+const buffer = require('buffer')
 
 
 async function pythonRunDecimo() {
-    const caminhoPython = utf8.encode('./src/controladores/scriptDecimo.py')
-const childPython = spawn('python', [`${caminhoPython}`])
+    const caminhoPython = './src/controladores/scriptDecimo.py'
+    const caminhoPythonEncode = buffer.from(caminhoPython, 'utf8')
+const childPython = spawn('python', [`${caminhoPythonEncode}`])
 
 childPython.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`)
