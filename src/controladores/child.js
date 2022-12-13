@@ -1,11 +1,11 @@
 //coding=utf-8
 const { spawn } = require('child_process')
-const buffer = require('buffer')
+const { Buffer } = require('buffer')
 
 
 async function pythonRunDecimo() {
     const caminhoPython = './src/controladores/scriptDecimo.py'
-    const caminhoPythonEncode = buffer.from(caminhoPython, 'utf8')
+    const caminhoPythonEncode = Buffer.from(caminhoPython, 'utf8')
 const childPython = spawn('python', [`${caminhoPythonEncode}`])
 
 childPython.stderr.on('data', (data) => {
