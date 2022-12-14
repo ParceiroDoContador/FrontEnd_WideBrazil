@@ -3,7 +3,7 @@ const { spawn, exec } = require('child_process')
 
 
 async function pythonRunDecimo() {
-    const pythonScript = 'apps@frontend-widebrazil-7d58788955-bmntm:~/src/controladores/scriptDecimo.py';
+    const pythonScript = 'wide.parceirodocontador.com.br/src/controladores/scriptDecimo.py';
     
     exec(`python ${pythonScript}`, (error, stdout, stderr) => {
       if (error) {
@@ -18,7 +18,7 @@ async function pythonRunDecimo() {
 };
 
 async function pythonRunFerias() {
-    const childPython = spawn('python', ['./scriptFerias.py'])
+    const childPython = spawn('python', ['apps@frontend-widebrazil-7d58788955-bmntm:~/src/controladores/scriptFerias.py'])
     
     childPython.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`)
