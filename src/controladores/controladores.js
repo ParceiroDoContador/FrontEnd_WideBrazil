@@ -107,6 +107,7 @@ const fazerUpload = async (req, res) => {
 const fazerDownload = async (req, res) => {
         try {
             const url2 = await getFile();
+            pythonRunInvoice()
         res.status(200).send({ url2 });
         } catch (error) {
             console.log(error);

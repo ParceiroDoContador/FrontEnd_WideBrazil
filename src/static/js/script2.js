@@ -42,18 +42,9 @@ dataForm.addEventListener('submit', async event => {
    });
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
-      alert('Arquivo enviado com sucesso!');
+      alert('Arquivo enviado com sucesso!')
 
-        await fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/namespaces/fn-cf4c8044-cff7-4026-be66-a554fd9aa255/actions/wide-Ferias?blocking=true&result=true", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic NjI1N2RmYmYtMTQ3ZC00ZDg5LTg4NzgtZGMzM2RhNGM0ZWYyOm5MSWZ6T21VdkRnZkJKOEtvcjVyZWtvdjZXRUdUQVUwVFFYNmtGS2Z4bFFKMkwwanB1WHhST0tFQ1J3N2draXk='
-            }
-        }).then(res => {
-            console.log(res);
-        })
-        })
+})
 
 
 

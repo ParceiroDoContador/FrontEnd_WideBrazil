@@ -65,17 +65,6 @@ downInput.addEventListener('click', async event => {
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
 
-    await fetch('https://eoaiyj5c7ks4kdu.m.pipedream.net').then(resposta => {
-        console.log(resposta);
-       if (resposta.status === 204) {
-        alert('Script sendo executado')
-        downloadInvoice();
-         
-       } else {
-        alert('Erro ao rodar o script')
-       }
-})
-
     nomeCliente.value = '';
     valorDolar.value = '';
 
