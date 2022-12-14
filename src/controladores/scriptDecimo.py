@@ -132,10 +132,12 @@ data_vencimento = data_vencimento.strftime("%d/%m/%Y")
 s3 = boto3.resource("s3", aws_access_key_id="AKIATX77KZ6NA7RTXMFO", aws_secret_access_key="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")
 bucket = s3.Bucket("parceiro-do-contador-bucket")
 bucket.download_file(Key="import2/décimo.pdf", Filename="planilha_decimo_terceiro")
+print('Baixou')
 
 #====================== Lancando Contas ===========================#
 os.rename(r'planilha_decimo_terceiro', r'planilha_decimo_terceiro.xls')
 planilha_decimo_terceiro = pd.read_excel(r"planilha_decimo_terceiro.xls")
+print("Leu")
 linha_planilha = 3
 total_linhas = planilha_decimo_terceiro.shape[0]
 while linha_planilha < total_linhas:
@@ -151,4 +153,5 @@ while linha_planilha < total_linhas:
     print(f"nome: {nome} - codigo_cliente_omie: {codigo_cliente_omie} - decimo_terceiro: {decimo_terceiro}")
     incluir_conta_receber(codigo_cliente_omie, data_vencimento, decimo_terceiro, codigo_categoria="1.01.03")  
     linha_planilha += 1
+    print("Removendo")
 os.remove(r"planilha_decimo_terceiro.xls")
