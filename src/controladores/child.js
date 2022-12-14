@@ -1,20 +1,22 @@
 //coding=utf-8
-const { spawn, exec } = require('child_process')
+const { spawn, execFile } = require('child_process')
 
 
 async function pythonRunDecimo() {
-    const pythonScript = 'wide.parceirodocontador.com.br/src/controladores/scriptDecimo.py';
-    
-    exec(`python ${pythonScript}`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-    
-      console.log(`stdout: ${stdout}`);
-      console.error(`stderr: ${stderr}`);
-    });
-    
+
+execFile(__dirname + '/scriptDecimo.py', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`error: ${error.message}`);
+    return;
+  }
+
+  if (stderr) {
+    console.error(`stderr: ${stderr}`);
+    return;
+  }
+
+  console.log(`stdout:\n${stdout}`);
+});
 };
 
 async function pythonRunFerias() {
