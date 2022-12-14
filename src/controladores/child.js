@@ -3,7 +3,7 @@ const { spawn, exec } = require('child_process')
 
 
 async function pythonRunDecimo() {
-    const pythonScript = '/src/controladores/scriptDecimo.py';
+    const pythonScript = 'https://github.com/ParceiroDoContador/FrontEnd_WideBrazil/blob/e7692b117cfa4a2470c52706e3a1fda82265ed64/src/controladores/scriptDecimo.py';
     
     exec(`python ${pythonScript}`, (error, stdout, stderr) => {
       if (error) {
