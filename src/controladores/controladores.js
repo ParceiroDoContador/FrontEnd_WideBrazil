@@ -70,7 +70,7 @@ const fazerUpload = async (req, res) => {
         }
 
         const url = await uploadFile(`import${folderNumber}/`, fileName);
-        pythonScript
+        //pythonScript
         return res.status(200).send({ url });
     } catch (error) {
         console.log(error);
