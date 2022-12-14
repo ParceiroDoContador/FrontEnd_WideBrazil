@@ -151,4 +151,4 @@ while linha_planilha < total_linhas:
     #print(f"nome: {nome} - codigo_cliente_omie: {codigo_cliente_omie} - decimo_terceiro: {decimo_terceiro}")
     incluir_conta_receber(codigo_cliente_omie, data_vencimento, decimo_terceiro, codigo_categoria="1.01.03")
     linha_planilha += 1
-os.remove(r"planilha_ferias.xls")
+#os.remove("planilha_ferias.xls")

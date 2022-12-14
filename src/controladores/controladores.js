@@ -19,37 +19,62 @@ const uploadLog = async (req, res) => {
 
  function getFileName(folderNumber) {
     let fileName = "";
-    let pythonScript = "";
 
     switch(folderNumber) {
         case '1' : {
             fileName = "férias.pdf";
-            pythonScript = pythonRunFerias()
             break
             
         }
 
         case '2' : {
             fileName = "décimo.pdf";
-            pythonScript = pythonRunDecimo()
             break
             
         }
 
         case '3' : {
             fileName = "flash.pdf";
-            pythonScript = pythonRunFlash()
             break
             
     }
         case '4' :{
             fileName = "seguro.pdf";
+            break
+    }
+   
+}
+    return fileName
+}
+
+function getScript(folderNumber) {
+    let pythonScript = "";
+
+    switch(folderNumber) {
+        case '1' : {
+            pythonScript = pythonRunFerias()
+            break
+            
+        }
+
+        case '2' : {
+            pythonScript = pythonRunDecimo()
+            break
+            
+        }
+
+        case '3' : {
+            pythonScript = pythonRunFlash()
+            break
+            
+    }
+        case '4' :{
             pythonScript = pythonRunSeguro()
             break
     }
    
 }
-    return fileName, pythonScript;
+    return pythonScript;
 }
 
 
@@ -63,14 +88,15 @@ const fazerUpload = async (req, res) => {
         }
 
         let fileName = getFileName(folderNumber);
-        let pythonScript = getFileName(folderNumber);
+        console.log(fileName);
+        let pythonScript = getScript(folderNumber);
 
         if (!fileName) {
             return res.status(400).json({ error: "Número de pasta inválido" })
         }
 
         const url = await uploadFile(`import${folderNumber}/`, fileName);
-        //pythonScript
+        pythonScript
         return res.status(200).send({ url });
     } catch (error) {
         console.log(error);
