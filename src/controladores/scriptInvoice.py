@@ -203,6 +203,6 @@ valor_total_dolar = valor_total_dolar.replace(".", ",")
 valor_total_dolar = valor_total_dolar.replace("_", ".")
 gerar_invoice(valor_total_dolar, nome)
 bucket.upload_file(Key="arquivos/invoice.pdf", Filename="invoice.pdf")
-os.remove("invoice.pdf")
+'''os.remove("invoice.pdf")
 os.remove("logo_fundo_branco.png")
-os.remove("j_son.json")
+os.remove("j_son.json")'''
