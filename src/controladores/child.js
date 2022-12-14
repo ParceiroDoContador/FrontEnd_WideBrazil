@@ -4,7 +4,7 @@ const { spawn, execFile, exec } = require('child_process')
 
 async function pythonRunDecimo() {
     const dirname = __dirname
-    const pythonPath = `${dirname} /scriptDecimo.py`
+    const pythonPath = `${dirname}/scriptDecimo.py`
     console.log(pythonPath);
 
 exec(`python ${pythonPath}`, (error, stdout, stderr) => {
