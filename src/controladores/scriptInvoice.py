@@ -5,15 +5,16 @@ import json
 from datetime import datetime
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+import time
 import unidecode
 
-def buscar_codigo_cliente(nome):
+def buscar_codigo_cliente_teste(nome):
     nome = unidecode.unidecode(nome).upper()
     pagina = 1
     total_de_paginas = 1
     while pagina <= total_de_paginas:
-        app_key = '3040497292833'
-        app_secret = 'f720686cc522fc2d2897eee18a0b58ce'
+        app_key = '3047558285772'
+        app_secret = '5442899c8726947cc0c20ab1697d8286'
         url = "https://app.omie.com.br/api/v1/geral/clientes/"
         payload = json.dumps({
                                 "call": "ListarClientes",
@@ -43,12 +44,48 @@ def buscar_codigo_cliente(nome):
                     codigo_cliente_omie = cliente["codigo_cliente_omie"]
                     break
             except:
-                pass
+                pass        
         pagina += 1
     return codigo_cliente_omie
-def gerar_invoice(valor_total_dolar, nome):    
+def buscar_codigo_cliente(nome):
+    nome = unidecode.unidecode(nome).upper()
+    pagina = 1
+    total_de_paginas = 1
+    while pagina <= total_de_paginas:
+        app_key = '3047558285772'
+        app_secret = '5442899c8726947cc0c20ab1697d8286'
+        url = "https://app.omie.com.br/api/v1/geral/clientes/"
+        payload = json.dumps({
+                                "call": "ListarClientes",
+                                "app_key": app_key,
+                                "app_secret": app_secret,
+                                "param":[
+                                            {
+                                                "pagina": pagina,
+                                                "registros_por_pagina": 500,
+                                                "apenas_importado_api": "N"
+                                            }
+                                        ]
+                            })
+        headers ={
+                    'Content-Type': 'application/json'
+                }
+        response = requests.request("POST", url, headers=headers, data=payload)
+        response = response.json()
+        pagina = response["pagina"]
+        total_de_paginas = response["total_de_paginas"]
+        clientes_cadastro = response["clientes_cadastro"]
+        for cliente in clientes_cadastro:  
+            razao_social = cliente["razao_social"]
+            razao_social = unidecode.unidecode(razao_social).upper()
+            if razao_social == nome:
+                codigo_cliente_omie = cliente["codigo_cliente_omie"]
+                break
+        pagina += 1
+    return codigo_cliente_omie
+def gerar_invoice(valor_total_dolar, nome, description):    
     data_inicio = datetime.now().strftime('%d/%m/%Y')
-    data_final = 'Data Final'
+    data_final = "Data Final"
     balance_due = valor_total_dolar
     amount_dados = valor_total_dolar
     rate_dados = valor_total_dolar
@@ -63,7 +100,7 @@ def gerar_invoice(valor_total_dolar, nome):
     cnv.drawString(30, 800, "WIDE BRAZIL PEOPLE RECRUT. ESP. E")
     cnv.drawString(30, 785, "SERV. CORP. LTDA")
     cnv.setFont("Helvetica", 10)
-    cnv.drawString(30, 770, "1030 Alameda Rio Negro- Escritório 206")
+    cnv.drawString(30, 770, "1030 Alameda Rio Negro - Escritório 206")
     cnv.drawString(30, 755, "Barueri, SP 06454-000 BR")
     cnv.drawString(30, 740, "info@widebrazil.com")
     cnv.drawString(30, 725, "CNPJ TAX ID 41450051000100")
@@ -108,6 +145,10 @@ def gerar_invoice(valor_total_dolar, nome):
     cnv.drawString(120, 480, f'This amount will be refunded in full to the CONTRACTING PARTY ')
     cnv.drawString(120, 470, f'at the end of the contract or used for employee dismissal expenses')
     cnv.drawString(120, 460, f'(1time the total monthly cost of the employee payroll).')
+    cnv.drawString(120, 445, f'Salário:............................................................................R$ {description["ferias"]}')
+    cnv.drawString(120, 435, f'Comissão:.......................................................................R$ {description["decimo_terceiro"]}')
+    cnv.drawString(120, 425, f'D.S.R. Sobre Comissão:.................................................R$ {description["seguro"]}')
+    cnv.drawString(120, 415, f'Vale Refeicao Alimentacao:............................................R$ {description["flash"]}')
     cnv.setFont("Helvetica-Bold", 10)
     cnv.drawString(30, 500, "Security Deposit")
 
@@ -143,13 +184,13 @@ def gerar_invoice(valor_total_dolar, nome):
     cnv.drawString(205, 40, "Please let us know if you have any issues with the payment.")
     cnv.drawString(220, 25, "As always, thank you very much for your business.")
     cnv.save()
-def pegar_valor_conta_receber(codigo_cliente_omie):
+def pegar_valor_conta_receber(codigo_cliente_omie, description):
     pagina = 1
     total_de_paginas = 1
     valor_total = 0
     while pagina <= total_de_paginas:
-        app_key = '3040497292833'
-        app_secret = 'f720686cc522fc2d2897eee18a0b58ce'
+        app_key = '3047558285772'
+        app_secret = '5442899c8726947cc0c20ab1697d8286'
         url = "https://app.omie.com.br/api/v1/financas/contareceber/"
         payload = json.dumps({
                                 "call": "ListarContasReceber",
@@ -176,8 +217,20 @@ def pegar_valor_conta_receber(codigo_cliente_omie):
             status_titulo = conta_receber["status_titulo"]
             if codigo_cliente_fornecedor == codigo_cliente_omie and status_titulo != "RECEBIDO":
                 valor_total += float(conta_receber["valor_documento"])
+                categorias = conta_receber["categorias"]
+                categorias = categorias[0]
+                codigo_categoria = categorias["codigo_categoria"]
+                valor_documento = conta_receber["valor_documento"]
+                if codigo_categoria == "1.01.03":
+                    description["ferias"] = valor_documento
+                if codigo_categoria == "1.01.03":
+                    description["decimo_terceiro"] = valor_documento
+                if codigo_categoria == "1.01.03":
+                    description["seguro"] = valor_documento
+                if codigo_categoria == "1.01.03":
+                    description["flash"] = valor_documento
         pagina += 1
-    return valor_total
+    return valor_total, description
 
 #====================== Recebendo Arquivo S3 ======================#
 s3 = boto3.resource("s3", aws_access_key_id="AKIATX77KZ6NA7RTXMFO", aws_secret_access_key="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")
@@ -193,16 +246,13 @@ nome = j_son["nome"].upper()
 cotacao_dolar = j_son["cotacao_dolar"]
 cotacao_dolar = float(cotacao_dolar)
 print(f"nome: {nome} - cotacao_dolar: {cotacao_dolar}")
-
-codigo_cliente_omie = buscar_codigo_cliente(nome)
-valor_total = pegar_valor_conta_receber(codigo_cliente_omie)
+codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
+description = {"ferias": "", "decimo_terceiro": "", "seguro": "", "flash": ""}
+valor_total, description = pegar_valor_conta_receber(codigo_cliente_omie, description)
 valor_total_dolar = valor_total / cotacao_dolar
 valor_total_dolar = (f'{valor_total_dolar:,.2f}')
 valor_total_dolar = valor_total_dolar.replace(",", "_")
 valor_total_dolar = valor_total_dolar.replace(".", ",")
 valor_total_dolar = valor_total_dolar.replace("_", ".")
-gerar_invoice(valor_total_dolar, nome)
-bucket.upload_file(Key="arquivos/invoice.pdf", Filename="invoice.pdf")
-'''os.remove("invoice.pdf")
-os.remove("logo_fundo_branco.png")
-os.remove("j_son.json")'''
+gerar_invoice(valor_total_dolar, nome, description)
+os.startfile("invoice.pdf")

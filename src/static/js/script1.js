@@ -62,8 +62,31 @@ downInput.addEventListener('click', async event => {
         body: JSON.stringify({ nome, cotacao_dolar })
     }).then(resposta => {})
 
+    const { requestInvoice } = await fetch(`${urlServer}/gerarInvoice`, {
+        headers: {
+            authorization: token
+        }
+    }).then(res => res.json());
+
+    await fetch(requestInvoice, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(resposta => {
+        if(resposta.status === 200) {
+            downloadInvoice();
+        }
+    })
+
+
+
+
+
+
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
+
 
     nomeCliente.value = '';
     valorDolar.value = '';

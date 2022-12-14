@@ -104,6 +104,19 @@ const fazerUpload = async (req, res) => {
     }
 }
 
+const gerarInvoice = async (req, res) => {
+    try {
+        const invoice = await pythonRunInvoice()
+        res.status(200).send({ invoice });     
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({ error: 'Erro ao gerar invoice' });
+    }
+}
+
+
+
+
 const fazerDownload = async (req, res) => {
         try {
             const url2 = await getFile();
@@ -159,4 +172,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { fazerDownload, fazerUploadTexto, login, uploadLog, fazerUpload}
+module.exports = { fazerDownload, fazerUploadTexto, login, uploadLog, fazerUpload, gerarInvoice}
