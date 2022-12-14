@@ -1,10 +1,13 @@
 //coding=utf-8
-const { spawn, execFile } = require('child_process')
+const { spawn, execFile, exec } = require('child_process')
 
 
 async function pythonRunDecimo() {
+    const dirname = __dirname
+    const pythonPath = `${dirname} /scriptDecimo.py`
+    console.log(pythonPath);
 
-execFile(__dirname + '/scriptDecimo.py', (error, stdout, stderr) => {
+exec(`python ${pythonPath}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`error: ${error.message}`);
     return;
