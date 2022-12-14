@@ -11,7 +11,7 @@ rotas.post('/log', uploadLog)
 
 rotas.use(verificaLogin)
 
-rotas.get('/s3UrlGet', fazerDownload)
+//rotas.get('/s3UrlGet', fazerDownload)
 
 rotas.get('/s3UrlPut', fazerUploadTexto)
 

@@ -26,7 +26,7 @@ const s3 = new aws.S3({
     return uploadURL;
 }
 
-async function getFile() {
+/*async function getFile() {
     const textName =  'arquivos/invoice.pdf'
 
     const params = ({
@@ -36,7 +36,8 @@ async function getFile() {
 
     const getURL = await s3.getSignedUrlPromise('getObject', params);
     return getURL;
-}
+}*/
+
 
 async function uploadText() {
     const txtName = 'arquivos/j_son.json';
