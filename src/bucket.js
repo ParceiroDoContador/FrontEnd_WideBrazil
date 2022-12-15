@@ -52,4 +52,4 @@ async function uploadText() {
 }
 
 
-module.exports = { uploadFile, getFile, uploadText };
+module.exports = { uploadFile, uploadText };
