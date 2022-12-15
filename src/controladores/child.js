@@ -1,5 +1,28 @@
 //coding=utf-8
-const { spawn, execFile, exec } = require('child_process')
+const { exec } = require('child_process')
+
+
+
+
+async function pythonRunFolha() {
+    const dirname = __dirname
+    const pythonPath = `${dirname}/scriptFolha.py`
+    console.log(pythonPath);
+
+exec(`python ${pythonPath}`, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`error: ${error.message}`);
+    return;
+  }
+
+  if (stderr) {
+    console.error(`stderr: ${stderr}`);
+    return;
+  }
+
+  console.log(`stdout:\n${stdout}`);
+});
+}
 
 
 async function pythonRunDecimo() {
@@ -108,6 +131,7 @@ module.exports = {
     pythonRunFerias,
     pythonRunFlash,
     pythonRunSeguro,
-    pythonRunInvoice
+    pythonRunInvoice,
+    pythonRunFolha
 }
 

@@ -2,10 +2,21 @@ const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
 const urlServer = 'https://wide.parceirodocontador.com.br'
 
+function mudarInput() {
+    const labelFile = document.querySelector('#labelFile');
+    const file = document.querySelector('#file');
+
+    nome = file.files[0].name
+
+    labelFile.style.backgroundColor = '#5b5e5d';
+    labelFile.textContent = nome
+}
+
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'
     if (file.files.length > 0) { 
         nome = file.files[0].name;
+        mudarInput()
     }
 
     fetch(`${urlServer}/log`, {

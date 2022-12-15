@@ -5,7 +5,7 @@
 
 body {
     background: linear-gradient(45deg, #54BAB9, #18978F, #11ce6c, #04999e);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .modal2  {
@@ -45,37 +45,49 @@ body {
     display: block;
     margin-top: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2px;
+    transition: .5s;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
 }
 
 #labelFile:hover {
-    background-color: #71a19f;
+    background-color: #1e4f4c;
+    
 }
+
 
 #file {
     display: none;
 }
 
+
 .importPlanilha button {
     background-color: #17968e;
     color: #fff;
+    width: 200px;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     margin: 10px;
     text-transform: uppercase;
     font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    transition: .5s;
 }
 
 .importPlanilha button:hover {
-    background-color: #71a19f;
+    background-color: #1e4f4c;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     margin: 10px;
     font-size: 15px;
     cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
 }
 
 .mainDiv2 {
@@ -86,70 +98,61 @@ body {
     align-items: center;
 }
 
+
+
 .return {
-    display: block;
+    display: flex;
     align-self: flex-start;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-left: 50px;
-    margin-bottom: 80px;
-}
-
-.return button {
-    background-color: #18978F;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 15px;
-}
-
-.return button:hover {
-    background-color: #71a19f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.backPage {
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-right: 20px; 
-    background-color: #18978F;
-    color:#fff;
-    width: 60px;
-    height: 40px;
-    font-size: 25px;
+    margin-bottom: 30px;
     text-align: center;
-    border: none;
-    font-style: bold;
-    cursor: pointer;
+    align-items: center;
+    
 }
 
-.backPage a {
+#setaReturn {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    color: #17968e;
+    transition: .3s;
+}
+
+#setaReturn:hover {
+    color: #1e4f4c;
+}
+
+.return a {
     text-decoration: none;
-    color: #fff;
+    color: #17968e;
+    font-size: 30px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 200;
 }
 
 
 .tablink {
     background-color: #17968e;
-    color: #010101;
+    color: #000;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
+    padding: 10px 10px;
+    padding-bottom: 5%;
+    font-size: 16px;
+    height: 5%;
+    width: 20%;
+    text-transform: uppercase;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 450;
+    transition: .5s;
   }
   
   .tablink:hover {
-    background-color: #17968e;
+    
+    color: #FFF;
   }
   
   .tabcontent {
@@ -172,8 +175,6 @@ footer {
     font-size: small;
 }
 
-.tablink#news{
-    background-color: #fff;
+.tablink#Decimo{
+    background-color: #fff;    
 }
-
-

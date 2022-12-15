@@ -30,6 +30,7 @@ body {
 
 .logo {
     width: 200px;
+    padding-top: 80px;
     margin: 0 0 30px 0;
     justify-content: center;
     align-items: center;
@@ -39,107 +40,73 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    margin-top: 20px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-button#downInput {
-    font-size: 15px;
-}
 
 button#downInput {
-    text-decoration: none;
-    color: #18978F;
+    background-color: #17968e;
+    color: #fff;
+    width: 200px;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    transition: .5s;
+    align-self: center;
 }
 
 button#downInput:hover {
-    background-color: #71a19f;
+    background-color: #1e4f4c;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     margin: 10px;
     font-size: 15px;
     cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
 }
 
-button#downInput {
-    background-color: #18978F;
-    color: #fff;
-    border: none;
-    width: 80px;
-    height: 40px;
-    border-radius: 5px;
-    text-align: center;
-    padding: 10px;
-    margin: 10px;
-    font-size: 17px;
-}
 
-.import {
-    display: block;
+.return {
+    display: flex;
     align-self: flex-end;
-    margin-top: 50px;
-    margin-right: 15px;
-}
-
-.import strong {
-    font-size: 20px;
-    margin-top: 15px;
-}
-
-.import button {
-    background-color: #18978F;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 15px;
-}
-
-.import button:hover {
-    background-color: #71a19f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 15px;
-    cursor: pointer;
-
-}
-
-.proxPage {
-    border-radius: 5px;
     margin-top: 20px;
-    margin-right: 20px; 
-    background-color: #18978F;
-    color:#fff;
-    width: 60px;
-    height: 40px;
-    font-size: 25px;
+    margin-right: 50px;
+    margin-bottom: 80px;
+    padding-bottom: 50px;
     text-align: center;
-    border: none;
-    font-style: bold;
-    cursor: pointer;
+    align-items: center;
 }
 
-.proxPage:hover {
-    background-color: #71a19f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 15px;
-    cursor: pointer;
+#setaReturn {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    color: #17968e;
+    transition: .3s;
 }
 
-.proxPage a {
+#setaReturn:hover {
+    color: #1e4f4c;
+}
+
+
+.return a {
     text-decoration: none;
-    color: #fff;
+    color: #17968e;
+    font-size: 30px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 200;
 }
 
 
@@ -156,6 +123,16 @@ button#downInput {
 .dadosInput:focus {
     outline: none;
 }
+
+#divForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    align-self: ;
+}
+
 
 
 

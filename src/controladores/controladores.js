@@ -2,7 +2,7 @@ const {uploadFile, uploadText} = require('../bucket')
 const knex = require('../../BancoDeDados/conexao')
 const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
-const { pythonRunDecimo, pythonRunFerias, pythonRunFlash, pythonRunInvoice, pythonRunSeguro } = require('./child')
+const { pythonRunDecimo, pythonRunFerias, pythonRunFlash, pythonRunInvoice, pythonRunSeguro, pythonRunFolha } = require('./child')
 
 
 const uploadLog = async (req, res) => {
@@ -42,7 +42,11 @@ const uploadLog = async (req, res) => {
             fileName = "seguro.pdf";
             break
     }
-   
+
+        case '5' :{
+            fileName = "folha_pagamento.pdf";
+            break
+    }
 }
     return fileName
 }
@@ -72,6 +76,10 @@ function getScript(folderNumber) {
             pythonScript = pythonRunSeguro()
             break
     }
+        case '5' :{
+            pythonScript = pythonRunFolha()
+            break
+        }
    
 }
     return pythonScript;
