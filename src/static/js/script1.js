@@ -65,26 +65,15 @@ downInput.addEventListener('click', async event => {
     const dataUrl3 = url3.split('?')[0];
     console.log(dataUrl3);
 
-    const { urlScript } = await fetch(`${urlServer}/gerarInvoice`, {
+    await fetch(`${urlServer}/gerarInvoice`, {
         headers: {
             authorization: token
         }
-    }).then(res => res.json());
-
-    await fetch(urlScript, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(resposta => {
-        console.log(resposta);
-        if(resposta.status === 200) {
-            alert('Arquivo gerado com sucesso');
-        }
-    })
+    }).then(res => {
+        console.log(res);
+    });
  
-    const dataScript = urlScript.split('?')[0];
-    console.log(dataScript);
+
 
 
 
