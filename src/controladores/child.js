@@ -86,7 +86,6 @@ async function pythonRunInvoice() {
     const dirname = __dirname
     const pythonPath = `${dirname}/scriptInvoice.py`
     console.log(pythonPath);
-
 exec(`python ${pythonPath}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`error: ${error.message}`);
