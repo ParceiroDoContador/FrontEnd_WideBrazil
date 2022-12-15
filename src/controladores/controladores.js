@@ -1,4 +1,4 @@
-const {uploadFile, getFile, uploadText} = require('../bucket')
+const {uploadFile, uploadText} = require('../bucket')
 const knex = require('../../BancoDeDados/conexao')
 const jwt = require('jsonwebtoken')
 const schemaLogin = require('../validacoes/schemaLogin')
@@ -106,7 +106,7 @@ const fazerUpload = async (req, res) => {
 
 const gerarInvoice = async (req, res) => {
     try {
-        const invoice = await pythonRunInvoice()
+        const invoice = await pythonRunInvoice();
         res.status(200).send({ invoice });     
     } catch (error) {
         console.log(error);

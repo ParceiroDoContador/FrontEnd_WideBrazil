@@ -82,6 +82,10 @@ downInput.addEventListener('click', async event => {
             alert('Arquivo gerado com sucesso');
         }
     })
+ 
+    const dataScript = urlScript.split('?')[0];
+    console.log(dataScript);
+
 
 
     nomeCliente.value = '';
