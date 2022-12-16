@@ -1,5 +1,6 @@
 const dataForm = document.querySelector('#dataForm');
 const file = document.querySelector('#file');
+const labelFile = document.querySelector('#labelFile')
 const urlServer = 'https://wide.parceirodocontador.com.br'
 
 
@@ -14,10 +15,10 @@ function mudarInput() {
 
 }
 
-
 function limparInput() {
-    const fileInput = document.querySelector('#file').value
-    const labelFile = document.querySelector('#labelFile').value
+    const fileInput = document.getElementById('file').value
+    const labelFile = document.getElementById('labelFile').value
+
     fileInput.value = ''
     labelFile.value = ''
 }
