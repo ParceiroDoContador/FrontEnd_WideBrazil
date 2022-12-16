@@ -15,10 +15,11 @@ function mudarInput() {
 }
 
 
-function limparInput() {
-    const fileInput = document.getElementById('file').value
-    fileInput.value = ''
-    
+function resetarInput() {
+    const labelFile = document.querySelector('#labelFile');
+
+    labelFile.style.backgroundColor = '#17968e';
+    labelFile.textContent = 'Selecione o arquivo'
 }
 
 file.addEventListener('change', () => {
@@ -28,7 +29,6 @@ file.addEventListener('change', () => {
         nome = file.files[0].name;
         console.log(nome);
         mudarInput()
-
     }
 
     fetch(`${urlServer}/log`, {
@@ -50,6 +50,11 @@ dataForm.addEventListener('submit', async event => {
         window.location.href = `${urlServer}/static/page0.html`;
     }
 
+    if(file.files.length == 0) {
+        alert('Nenhum arquivo selecionado')
+        return
+    }
+
     const dataFile = file.files[0]
     const { url } = await fetch(`${urlServer}/upload-url?folderNumber=5`, {
     headers: {
@@ -66,5 +71,6 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
-        limparInput()
+      dataForm.reset()
+      resetarInput()
 });

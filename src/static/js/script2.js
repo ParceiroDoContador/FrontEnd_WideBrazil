@@ -1,5 +1,5 @@
 const dataForm = document.querySelector('#dataForm');
-const file = document.querySelector('#file');
+let file = document.querySelector('#file');
 const labelFile = document.querySelector('#labelFile')
 const urlServer = 'https://wide.parceirodocontador.com.br'
 
@@ -14,12 +14,13 @@ function mudarInput() {
     labelFile.textContent = nome
 }
 
+function resetarInput() {
+    const labelFile = document.querySelector('#labelFile');
 
-function limparInput() {
-    const fileInput = document.getElementById('file').value
-    fileInput.value = ''
-    
+    labelFile.style.backgroundColor = '#17968e';
+    labelFile.textContent = 'Selecione o arquivo'
 }
+
 
 
 file.addEventListener('change', () => {
@@ -48,6 +49,14 @@ dataForm.addEventListener('submit', async event => {
         window.location.href = `${urlServer}/static/page0.html`;
     }
 
+    if(file.files.length == 0) {
+        alert('Nenhum arquivo selecionado')
+        return
+    }
+
+    console.log(file.files.length);
+    
+
     const dataFile = file.files[0]
     const { url } = await fetch(`${urlServer}/upload-url?folderNumber=1`, {
     headers: {
@@ -64,10 +73,10 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!')
-      limparInput()
-
- 
-
+      dataForm.reset()
+      resetarInput()
+        
+      
 })
 
 
