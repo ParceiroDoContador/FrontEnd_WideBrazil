@@ -180,7 +180,7 @@ if str(liberacao) == "<Response [200]>":
     #====================== Recebendo Arquivo S3 ======================#
     s3 = boto3.resource("s3", aws_access_key_id="AKIATX77KZ6NA7RTXMFO", aws_secret_access_key="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")
     bucket = s3.Bucket("parceiro-do-contador-bucket")
-    bucket.download_file(Key="folha_pagamento/folha_pagamento.xlsx", Filename="planilha_folha_pagamento")
+    bucket.download_file(Key="import5/folha_pagamento.xlsx", Filename="planilha_folha_pagamento")
 
     os.rename('planilha_folha_pagamento', 'planilha_folha_pagamento.xlsx')
     data_vencimento = pegar_data_vencimento()
