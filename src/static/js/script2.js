@@ -13,6 +13,12 @@ function mudarInput() {
     labelFile.textContent = nome
 }
 
+
+function limparInput() {
+    const fileInput = document.getElementById('file').value
+    fileInput.value = ''
+}
+
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'
     if (file.files.length > 0) { 
@@ -55,9 +61,9 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!')
+      limparInput()
 
-    const fileRemove = document.getElementById('file').value
-    fileRemove.value = ''
+ 
 
 })
 
