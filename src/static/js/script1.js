@@ -72,10 +72,6 @@ downInput.addEventListener('click', async event => {
     }).then(res => {
         console.log(res);
     });
- 
-
-
-
 
     nomeCliente.value = '';
     valorDolar.value = '';

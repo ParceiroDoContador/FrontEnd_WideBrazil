@@ -57,6 +57,12 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
+
+      const fileRemove = document.getElementById('file').value
+      fileRemove.value = ''
+
+
+
     })
 
 
