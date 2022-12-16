@@ -48,6 +48,8 @@ downInput.addEventListener('click', async event => {
     const nome = document.getElementById('nomeCliente').value;
     const cotacao_dolar = document.getElementById('valorDolar').value;
 
+ 
+
     const { url3 } = await fetch(`${urlServer}/s3UrlPut`, {
         headers: {
             authorization: token
