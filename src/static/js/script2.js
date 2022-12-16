@@ -14,13 +14,13 @@ function mudarInput() {
     labelFile.textContent = nome
 }
 
+
 function limparInput() {
     const fileInput = document.getElementById('file').value
-    const labelFile = document.getElementById('labelFile').value
-
     fileInput.value = ''
-    labelFile.value = ''
+    
 }
+
 
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'

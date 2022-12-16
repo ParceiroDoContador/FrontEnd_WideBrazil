@@ -15,10 +15,8 @@ function mudarInput() {
 
 function limparInput() {
     const fileInput = document.getElementById('file').value
-    const labelFile = document.getElementById('labelFile').value
-
     fileInput.value = ''
-    labelFile.value = ''
+    
 }
 
 file.addEventListener('change', () => {
