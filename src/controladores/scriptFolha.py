@@ -199,9 +199,9 @@ if str(liberacao) == "<Response [200]>":
         base = dados[5]
         liquido = dados[6]
         print(f"\n\nlancamento: {lancamento} - provento: {provento} - desconto: {desconto} - base: {base} - liquido: {liquido}")
-        nome = "Paulo"
+        #nome = "Paulo"
         if nome != nome_anterior:
-            codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
+            codigo_cliente_omie = buscar_codigo_cliente(nome)
 
         if lancamento == "Salário" or lancamento == "Saldo de Salário":
             incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_salario)
