@@ -13,8 +13,8 @@ function mudarInput() {
 }
 
 function limparInput() {
-    const fileInput = document.getElementById('file').value
-    const labelFile = document.getElementById('labelFile').value
+    const fileInput = document.querySelector('#file').value
+    const labelFile = document.querySelector('#labelFile').value
     fileInput.value = ''
     labelFile.value = ''
 }
