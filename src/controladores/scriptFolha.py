@@ -133,8 +133,8 @@ if str(liberacao) == "<Response [200]>":
         pagina = 1
         total_de_paginas = 1
         while pagina <= total_de_paginas:
-            app_key = '3063090936906'
-            app_secret = 'f22630619eaaab6d794e057beaa898bf'
+            app_key = '3068480598183'
+            app_secret = '91ed53d6746eb516fd6239186c82ad65'
             url = "https://app.omie.com.br/api/v1/geral/clientes/"
             payload = json.dumps({
                                     "call": "ListarClientes",
