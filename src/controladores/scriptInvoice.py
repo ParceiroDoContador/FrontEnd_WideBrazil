@@ -315,7 +315,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "5802271497"
+                                                "id_conta_corrente": "7311700205"
                                             }
                                         ]
                             })

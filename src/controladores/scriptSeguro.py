@@ -17,8 +17,8 @@ if str(liberacao) == "<Response [200]>":
     categoria_pagar_seguro = "2.01.01"
 
     #============================= Funções ============================#
-    app_key = '3047558285772'
-    app_secret = '5442899c8726947cc0c20ab1697d8286'
+    app_key = '3068480598183'
+    app_secret = '91ed53d6746eb516fd6239186c82ad65'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -66,7 +66,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "5802271497"
+                                                "id_conta_corrente": "7311700205"
                                             }
                                         ]
                             })
@@ -81,8 +81,6 @@ if str(liberacao) == "<Response [200]>":
         pagina = 1
         total_de_paginas = 1
         while pagina <= total_de_paginas:
-            app_key = '3068480598183'
-            app_secret = '91ed53d6746eb516fd6239186c82ad65'
             url = "https://app.omie.com.br/api/v1/geral/clientes/"
             payload = json.dumps({
                                     "call": "ListarClientes",
@@ -120,8 +118,6 @@ if str(liberacao) == "<Response [200]>":
         pagina = 1
         total_de_paginas = 1
         while pagina <= total_de_paginas:
-            app_key = '3063090936906'
-            app_secret = 'f22630619eaaab6d794e057beaa898bf'
             url = "https://app.omie.com.br/api/v1/geral/clientes/"
             payload = json.dumps({
                                     "call": "ListarClientes",

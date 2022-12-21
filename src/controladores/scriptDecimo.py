@@ -66,7 +66,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "5802271497"
+                                                "id_conta_corrente": "7311700205"
                                             }
                                         ]
                             })
@@ -81,8 +81,6 @@ if str(liberacao) == "<Response [200]>":
         pagina = 1
         total_de_paginas = 1
         while pagina <= total_de_paginas:
-            app_key = '3047558285772'
-            app_secret = '5442899c8726947cc0c20ab1697d8286'
             url = "https://app.omie.com.br/api/v1/geral/clientes/"
             payload = json.dumps({
                                     "call": "ListarClientes",
@@ -120,8 +118,6 @@ if str(liberacao) == "<Response [200]>":
         pagina = 1
         total_de_paginas = 1
         while pagina <= total_de_paginas:
-            app_key = '3047558285772'
-            app_secret = '5442899c8726947cc0c20ab1697d8286'
             url = "https://app.omie.com.br/api/v1/geral/clientes/"
             payload = json.dumps({
                                     "call": "ListarClientes",
