@@ -24,7 +24,7 @@ if str(liberacao) == "<Response [200]>":
     categoria_adiantamento = "1.03.03"
     categoria_irrf = ""
     categoria_previdencia = "1.03.26"
-    categoria_inss_empresa = "1.04.01"
+    categoria_inss_empresa = "2.01.02"
     categoria_fgts = "2.01.02"
     categoria_liquido = "1.04.03"
 

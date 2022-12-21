@@ -10,7 +10,7 @@ function mudarInput() {
     nome = file.files[0].name
 
     labelFile.style.backgroundColor = '#5b5e5d';
-    labelFile.textContent = nomeabelFile.textContent = "Arquivo selecionado"
+    labelFile.textContent = nome
 
 }
 

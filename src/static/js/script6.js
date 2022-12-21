@@ -14,7 +14,6 @@ function mudarInput() {
 
 }
 
-
 function resetarInput() {
     const labelFile = document.querySelector('#labelFile');
 
@@ -22,12 +21,11 @@ function resetarInput() {
     labelFile.textContent = 'Selecione o arquivo'
 }
 
+
 file.addEventListener('change', () => {
     let nome = 'Não há arquivo selecionado.'
-
     if (file.files.length > 0) { 
         nome = file.files[0].name;
-        console.log(nome);
         mudarInput()
     }
 
@@ -55,6 +53,7 @@ dataForm.addEventListener('submit', async event => {
         return
     }
 
+
     const dataFile = file.files[0]
     const { url } = await fetch(`${urlServer}/upload-url?folderNumber=5`, {
     headers: {
@@ -71,6 +70,9 @@ dataForm.addEventListener('submit', async event => {
       const dataUrl = url.split('?')[0];
       console.log(dataUrl);
       alert('Arquivo enviado com sucesso!');
-      dataForm.reset()
-      resetarInput()
-});
+      dataForm.reset();
+      resetarInput();
+
+
+
+    })
