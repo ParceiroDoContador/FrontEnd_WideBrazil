@@ -49,17 +49,17 @@ downInput.addEventListener('click', async event => {
     const cotacao_dolar = document.getElementById('valorDolar').value;
 
 
-    if (nome === '' || cotacao_dolar === '') {
+    /*if (nome === '' || cotacao_dolar === '') {
         alert('Preencha todos os campos');
         return;
-    }
+    }*/
 
-    let isFloat = cotacao_dolar % 1 === 0
+    /*let isFloat = cotacao_dolar % 1 === 0
 
-    if (isFloat) {
-        alert('O valor do dolar deve conter apenas números e as casas decimais separadas por ponto');
-        return;
-    }
+    //if (isFloat) {
+    //   alert('O valor do dolar deve conter apenas números e as casas decimais separadas por ponto');
+    // return;
+     }*/
 
 
     const { url3 } = await fetch(`${urlServer}/s3UrlPut`, {
