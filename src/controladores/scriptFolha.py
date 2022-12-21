@@ -22,7 +22,7 @@ if str(liberacao) == "<Response [200]>":
     categoria_reembolso_saude = "1.03.01"
     categoria_inss = "1.03.02"
     categoria_adiantamento = "1.03.03"
-    categoria_irrf = ""
+    categoria_irrf = "2.01.02"
     categoria_previdencia = "1.03.26"
     categoria_inss_empresa = "2.01.02"
     categoria_fgts = "2.01.02"
