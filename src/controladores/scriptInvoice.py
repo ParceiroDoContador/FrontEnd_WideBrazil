@@ -33,8 +33,8 @@ if str(liberacao) == "<Response [200]>":
     categoria_receber_decimo = "1.04.06"
     categoria_receber_flash = "1.04.06"
 
-    app_key = '3047558285772'
-    app_secret = '5442899c8726947cc0c20ab1697d8286'
+    app_key = '3063090936906'
+    app_secret = 'f22630619eaaab6d794e057beaa898bf'
     def buscar_codigo_cliente_teste(nome):
         nome = unidecode.unidecode(nome).upper()
         pagina = 1

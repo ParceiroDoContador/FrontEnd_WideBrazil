@@ -17,8 +17,8 @@ if str(liberacao) == "<Response [200]>":
     categoria_receber_decimo = "1.04.06"
 
     #============================= Funções ============================#
-    app_key = '3047558285772'
-    app_secret = '5442899c8726947cc0c20ab1697d8286'
+    app_key = '3063090936906'
+    app_secret = 'f22630619eaaab6d794e057beaa898bf'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
