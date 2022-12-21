@@ -222,8 +222,8 @@ if str(liberacao) == "<Response [200]>":
         total_de_paginas = 1
         valor_total = 0
         while pagina <= total_de_paginas:
-            app_key = '3047558285772'
-            app_secret = '5442899c8726947cc0c20ab1697d8286'
+            app_key = '3068480598183'
+            app_secret = '91ed53d6746eb516fd6239186c82ad65'
             url = "https://app.omie.com.br/api/v1/financas/contareceber/"
             payload = json.dumps({
                                     "call": "ListarContasReceber",
