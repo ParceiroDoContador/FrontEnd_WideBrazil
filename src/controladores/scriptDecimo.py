@@ -9,12 +9,12 @@ from reportlab.lib.pagesizes import A4
 import unidecode
 
 #=================== Verificação de Liberão ========================#
-liberacao = requests.get("https://gliciojunior.notion.site/WIDE-BRAZIL-PEOPLE-RECRUTAMENTO-ESPECIALIZADO-E-SERVICOS-CORPORATIVOS-LTDA-e13c02ae0f0f4af3b5af1a1a72c69aff")
+liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
 
-    categoria_pagar_decimo = "2.01.01"
-    categoria_receber_decimo = "1.04.06"
+    categoria_pagar_decimo = "2.01.90"
+    categoria_receber_decimo = "1.01.90"
 
     #============================= Funções ============================#
     app_key = '3068480598183'

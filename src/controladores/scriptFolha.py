@@ -9,24 +9,30 @@ from reportlab.lib.pagesizes import A4
 import unidecode
 
 #=================== Verificação de Liberão ========================#
-liberacao = requests.get("https://gliciojunior.notion.site/WIDE-BRAZIL-PEOPLE-RECRUTAMENTO-ESPECIALIZADO-E-SERVICOS-CORPORATIVOS-LTDA-e13c02ae0f0f4af3b5af1a1a72c69aff")
+liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     
     #======================= Categorias ==============================#
-    categoria_salario = "1.01.01"
+    categoria_receber_salario = "1.01.97"
     categoria_comissao = "1.01.02"
     categoria_dsr = "1.01.03"
     categoria_alimentacao = "1.02.01"
-    categoria_reembolso_despesas = "1.02.02"
-    categoria_reembolso_saude = "1.03.01"
-    categoria_inss = "1.03.02"
+    categoria_receber_reembolso_despesas = "1.04.02"
+    categoria_receber_reembolso_saude = "2.01.01"
+    categoria_receber_inss = "1.01.96"
     categoria_adiantamento = "1.03.03"
-    categoria_irrf = "2.01.02"
+    categoria_irrf = ""
     categoria_previdencia = "1.03.26"
-    categoria_inss_empresa = "2.01.02"
-    categoria_fgts = "2.01.02"
-    categoria_liquido = "1.04.03"
+    categoria_receber_inss_empresa = "1.01.99"
+    categoria_receber_fgts = "1.01.98"
+    categoria_liquido = "2.01.99"
+
+    categoria_pagar_fgts = "2.01.94"
+    categoria_pagar_inss_empresa = "2.01.98"
+    categoria_pagar_reembolso_saude = "2.01.96"
+    categoria_pagar_reembolso_despesas = "1.04.02"
+    categoria_pagar_inss = "2.01.97"
 
     #============================= Funções ============================#
     app_key = '3068480598183'
@@ -176,7 +182,7 @@ if str(liberacao) == "<Response [200]>":
     #====================== Recebendo Arquivo S3 ======================#
     s3 = boto3.resource("s3", aws_access_key_id="AKIATX77KZ6NA7RTXMFO", aws_secret_access_key="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")
     bucket = s3.Bucket("parceiro-do-contador-bucket")
-    bucket.download_file(Key="import5/folha_pagamento.pdf", Filename="planilha_folha_pagamento")
+    bucket.download_file(Key="folha_pagamento/folha_pagamento.pdf", Filename="planilha_folha_pagamento")
 
     os.rename('planilha_folha_pagamento', 'planilha_folha_pagamento.xlsx')
     data_vencimento = pegar_data_vencimento()
@@ -194,13 +200,12 @@ if str(liberacao) == "<Response [200]>":
         desconto = dados[4]
         base = dados[5]
         liquido = dados[6]
-        print(f"\n\nlancamento: {lancamento} - provento: {provento} - desconto: {desconto} - base: {base} - liquido: {liquido}")
-        #nome = "Paulo"
+        print(f"\n\nnome: {nome} - lancamento: {lancamento} - provento: {provento} - desconto: {desconto} - base: {base} - liquido: {liquido}")
         if nome != nome_anterior:
             codigo_cliente_omie = buscar_codigo_cliente(nome)
 
         if lancamento == "Salário" or lancamento == "Saldo de Salário":
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_salario)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_receber_salario)
             print(provento)
 
         if lancamento == "Comissão":
@@ -219,17 +224,17 @@ if str(liberacao) == "<Response [200]>":
             print(provento)
 
         if lancamento == "Reembolso de despesas":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_reembolso_despesas)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_reembolso_despesas)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_receber_reembolso_despesas)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_pagar_reembolso_despesas)
             print(provento)
 
         if lancamento == "Reembolso Seg. Saúde":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_reembolso_saude)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_reembolso_saude)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_pagar_reembolso_saude)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_receber_reembolso_saude)
             print(provento)
 
         if lancamento == "INSS Sobre Salário":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_inss)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_pagar_inss)
             print(desconto)
 
         if lancamento == "Adiantamento Anterior":
@@ -249,13 +254,13 @@ if str(liberacao) == "<Response [200]>":
         if lancamento == "Base INSS Empresa":        
             base = base * 0.288
             base = f"{base:.2f}"
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, base, categoria_inss_empresa)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, base, categoria_inss_empresa)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, base, categoria_pagar_inss_empresa)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, base, categoria_receber_inss_empresa)
             print(base)      
 
         if lancamento == "Base F.G.T.S.":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, base, categoria_fgts)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, base, categoria_fgts)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, base, categoria_pagar_fgts)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, base, categoria_receber_fgts)
             print(base)
 
         if lancamento == "Líquído":

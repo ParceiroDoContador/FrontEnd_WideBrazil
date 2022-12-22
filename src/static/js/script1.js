@@ -49,10 +49,10 @@ downInput.addEventListener('click', async event => {
     const cotacao_dolar = document.getElementById('valorDolar').value;
 
 
-    /*if (nome === '' || cotacao_dolar === '') {
+    if (nome === '' || cotacao_dolar === '') {
         alert('Preencha todos os campos');
         return;
-    }*/
+    }
 
     /*let isFloat = cotacao_dolar % 1 === 0
 
@@ -84,7 +84,12 @@ downInput.addEventListener('click', async event => {
             authorization: token
         }
     }).then(res => {
-        console.log(res);
+        if (res.status === 200){
+            console.log(res);
+            alert('Invoice gerado com sucesso!')
+        } else {
+            alert('Erro ao gerar invoice')
+        }
     });
 
     nomeCliente.value = '';

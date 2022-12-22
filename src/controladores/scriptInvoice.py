@@ -11,27 +11,27 @@ import base64
 import random
 
 #=================== Verificação de Liberão ========================#
-liberacao = requests.get("https://gliciojunior.notion.site/WIDE-BRAZIL-PEOPLE-RECRUTAMENTO-ESPECIALIZADO-E-SERVICOS-CORPORATIVOS-LTDA-e13c02ae0f0f4af3b5af1a1a72c69aff")
+liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     #======================= Categorias ==============================#
-    categoria_receber_salario = "1.01.01"
+    categoria_receber_salario = "1.01.97"
     categoria_receber_comissao = "1.01.02"
     categoria_receber_dsr = "1.01.03"
     categoria_receber_alimentacao = "1.02.01"
-    categoria_receber_reembolso_despesas = "1.02.02"
-    categoria_receber_reembolso_saude = "1.03.01"
-    categoria_receber_inss = "1.03.02"
+    categoria_receber_reembolso_despesas = "1.04.02"
+    categoria_receber_reembolso_saude = "2.01.01"
+    categoria_receber_inss = "1.01.96"
     categoria_receber_adiantamento = "1.03.03"
     categoria_receber_irrf = ""
     categoria_receber_previdencia = "1.03.26"
-    categoria_receber_inss_empresa = "1.04.01"
-    categoria_receber_fgts = "1.04.03"
+    categoria_receber_inss_empresa = "1.01.99"
+    categoria_receber_fgts = "1.01.98"
     categoria_receber_liquido = "1.04.03"
-    categoria_receber_ferias = "1.04.06"
+    categoria_receber_ferias = "1.01.94"
     categoria_receber_seguro = "1.04.06"
-    categoria_receber_decimo = "1.04.06"
-    categoria_receber_flash = "1.04.06"
+    categoria_receber_decimo = "1.01.90"
+    categoria_receber_flash = "1.01.91"
 
     app_key = '3068480598183'
     app_secret = '91ed53d6746eb516fd6239186c82ad65'
@@ -100,8 +100,11 @@ if str(liberacao) == "<Response [200]>":
             clientes_cadastro = response["clientes_cadastro"]
             for cliente in clientes_cadastro:  
                 razao_social = cliente["razao_social"]
+                nome_fantasia = cliente["nome_fantasia"]
                 razao_social = unidecode.unidecode(razao_social).upper()
-                if razao_social == nome:
+                nome_fantasia = unidecode.unidecode(nome_fantasia).upper()  
+                print(f'nome: {nome} - razao_social: {razao_social} - nome_fantasia: {nome_fantasia}')              
+                if razao_social == nome or nome_fantasia == nome:
                     codigo_cliente_omie = cliente["codigo_cliente_omie"]
                     break
             pagina += 1
@@ -222,8 +225,6 @@ if str(liberacao) == "<Response [200]>":
         total_de_paginas = 1
         valor_total = 0
         while pagina <= total_de_paginas:
-            app_key = '3068480598183'
-            app_secret = '91ed53d6746eb516fd6239186c82ad65'
             url = "https://app.omie.com.br/api/v1/financas/contareceber/"
             payload = json.dumps({
                                     "call": "ListarContasReceber",
@@ -373,7 +374,12 @@ if str(liberacao) == "<Response [200]>":
         j_son = arquivo.read()
     j_son = j_son.replace("'", "\"")
     j_son = json.loads(j_son)
-    nome = j_son["nome"].upper()
+    nome = j_son["nome"]
+    print(f'nome: {nome}')
+    try:
+        nome = nome.encode("windows-1252").decode("utf-8")
+    except:
+        pass
     cotacao_dolar = j_son["cotacao_dolar"]
     if "," in str(cotacao_dolar):
         cotacao_dolar = cotacao_dolar.replace(",", ".")
