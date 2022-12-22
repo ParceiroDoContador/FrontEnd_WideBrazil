@@ -33,6 +33,8 @@ if str(liberacao) == "<Response [200]>":
     categoria_receber_decimo = "1.01.90"
     categoria_receber_flash = "1.01.91"
 
+    categoria_invoice = "1.01.89"
+
     app_key = '3068480598183'
     app_secret = '91ed53d6746eb516fd6239186c82ad65'
     def buscar_codigo_cliente_teste(nome):
@@ -405,5 +407,5 @@ if str(liberacao) == "<Response [200]>":
     invoice_64 = invoice_64[2:]
     codigo_cliente_omie = buscar_codigo_cliente(nome)
     data_vencimento = pegar_data_vencimento()
-    codigo_lancamento_omie = incluir_conta_receber_codigo(codigo_cliente_omie, data_vencimento, valor_total, categoria_receber_liquido)
+    codigo_lancamento_omie = incluir_conta_receber_codigo(codigo_cliente_omie, data_vencimento, valor_total, categoria_invoice)
     anexar_invoice(codigo_lancamento_omie, invoice_64)
