@@ -10,7 +10,9 @@ from docx.oxml.shared import OxmlElement
 from docx import Document
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, Inches, RGBColor
-from docx2pdf import convert
+#from docx2pdf import convert
+import os
+import win32com.client
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
@@ -365,6 +367,15 @@ if str(liberacao) == "<Response [200]>":
 
         documento.save(f"invoice.docx")
         #convert(f"invoice.docx", "invoice.pdf")
+
+        wdFormatPDF = 17
+        inputFile = os.path.abspath("invoice.docx")
+        outputFile = os.path.abspath("invoice.pdf")
+        word = win32com.client.Dispatch('Word.Application')
+        doc = word.Documents.Open(inputFile)
+        doc.SaveAs(outputFile, FileFormat=wdFormatPDF)
+        doc.Close()
+        word.Quit()
     def pegar_valor_conta_receber(codigo_cliente_omie, description):
         pagina = 1
         total_de_paginas = 1
@@ -485,7 +496,7 @@ if str(liberacao) == "<Response [200]>":
                                                 {
                                                     "cTabela": "conta-receber",
                                                     "nId": nId,
-                                                    "cNomeArquivo": "invoice.docx",
+                                                    "cNomeArquivo": "invoice.pdf",
                                                     "cTipoArquivo": "",
                                                     "cArquivo": cArquivo,
                                                     "cMd5": cMd5
@@ -542,7 +553,7 @@ if str(liberacao) == "<Response [200]>":
     valor_total_dolar = valor_total_dolar.replace(".", ",")
     valor_total_dolar = valor_total_dolar.replace("_", ".")
     gerar_invoice(valor_total_dolar, nome, description)
-    shutil.make_archive('invoice', 'zip', '', 'invoice.docx')
+    shutil.make_archive('invoice', 'zip', '', 'invoice.pdf')
     with open("invoice.zip", "rb") as arquivo:
         invoice_64 = base64.b64encode(arquivo.read())
     invoice_64 = str(invoice_64)
