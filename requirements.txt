@@ -18,3 +18,4 @@ urllib3==1.26.13
 xlrd==2.0.1
 openpyxl==3.0.10
 python-docx==0.8.11
+docx2pdf==0.1.8
