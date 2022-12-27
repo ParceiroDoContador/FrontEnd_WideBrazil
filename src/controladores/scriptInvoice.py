@@ -364,7 +364,7 @@ if str(liberacao) == "<Response [200]>":
         rodape.font.size = Pt(8)
 
         documento.save(f"invoice.docx")
-        convert(f"invoice.docx", "invoice.pdf")
+        #convert(f"invoice.docx", "invoice.pdf")
     def pegar_valor_conta_receber(codigo_cliente_omie, description):
         pagina = 1
         total_de_paginas = 1
@@ -485,7 +485,7 @@ if str(liberacao) == "<Response [200]>":
                                                 {
                                                     "cTabela": "conta-receber",
                                                     "nId": nId,
-                                                    "cNomeArquivo": "invoice.pdf",
+                                                    "cNomeArquivo": "invoice.docx",
                                                     "cTipoArquivo": "",
                                                     "cArquivo": cArquivo,
                                                     "cMd5": cMd5
@@ -542,7 +542,7 @@ if str(liberacao) == "<Response [200]>":
     valor_total_dolar = valor_total_dolar.replace(".", ",")
     valor_total_dolar = valor_total_dolar.replace("_", ".")
     gerar_invoice(valor_total_dolar, nome, description)
-    shutil.make_archive('invoice', 'zip', '', 'invoice.pdf')
+    shutil.make_archive('invoice', 'zip', '', 'invoice.docx')
     with open("invoice.zip", "rb") as arquivo:
         invoice_64 = base64.b64encode(arquivo.read())
     invoice_64 = str(invoice_64)
