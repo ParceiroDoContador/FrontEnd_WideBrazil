@@ -115,6 +115,7 @@ const fazerUpload = async (req, res) => {
 const gerarInvoice = async (req, res) => {
     try {
         const invoice = await pythonRunInvoice();
+        console.log(invoice);
         res.status(200).send({ invoice });     
     } catch (error) {
         console.log(error);
