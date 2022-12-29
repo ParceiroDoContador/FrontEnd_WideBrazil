@@ -107,7 +107,7 @@ if str(liberacao) == "<Response [200]>":
                 nome_fantasia = cliente["nome_fantasia"]
                 razao_social = unidecode.unidecode(razao_social).upper()
                 nome_fantasia = unidecode.unidecode(nome_fantasia).upper()  
-                print(f'nome: {nome} - razao_social: {razao_social} - nome_fantasia: {nome_fantasia}')              
+                #print(f'nome: {nome} - razao_social: {razao_social} - nome_fantasia: {nome_fantasia}')              
                 if razao_social == nome or nome_fantasia == nome:
                     codigo_cliente_omie = cliente["codigo_cliente_omie"]
                     break
@@ -229,7 +229,7 @@ if str(liberacao) == "<Response [200]>":
         for chave in description.keys():
             if description[chave] != "":
                 numero_proventos += 1
-        print(f"numero_proventos: {numero_proventos}")
+        #print(f"numero_proventos: {numero_proventos}")
 
         # Preenchendo tabela_2
         tabela_2 = documento.add_table(rows=numero_proventos+1, cols=3)
@@ -470,7 +470,7 @@ if str(liberacao) == "<Response [200]>":
                 }
         response = requests.request("POST", url, headers=headers, data=payload)
         response = response.json()
-        print(f'IncluirContaReceber: {response}')
+        #print(f'IncluirContaReceber: {response}')
         codigo_lancamento_omie = response["codigo_lancamento_omie"]
         return codigo_lancamento_omie
     def anexar_invoice(nId, cArquivo):
@@ -497,7 +497,7 @@ if str(liberacao) == "<Response [200]>":
                     }
             response = requests.request("POST", url, headers=headers, data=payload)
             response = response.json()
-            print(f'IncluirAnexo: {response}')
+            #print(f'IncluirAnexo: {response}')
             try:
                 faultstring = response["faultstring"]
                 faultstring = faultstring.split(" ")
@@ -506,7 +506,7 @@ if str(liberacao) == "<Response [200]>":
                 faultstring = faultstring.replace("[", "")
                 faultstring = faultstring.replace("]", "")
                 cMd5 = faultstring.replace("!", "")
-                print(f"cMd5: {cMd5}")      
+                #print(f"cMd5: {cMd5}")      
             except:
                 break
 
@@ -520,7 +520,7 @@ if str(liberacao) == "<Response [200]>":
     j_son = j_son.replace("'", "\"")
     j_son = json.loads(j_son)
     nome = j_son["nome"]
-    print(f'nome: {nome}')
+    #print(f'nome: {nome}')
     try:
         nome = nome.encode("windows-1252").decode("utf-8")
     except:

@@ -2,8 +2,6 @@
 const { exec } = require('child_process')
 
 
-
-
 async function pythonRunFolha() {
     const dirname = __dirname
     const pythonPath = `${dirname}/scriptFolha.py`
@@ -121,6 +119,7 @@ exec(`python ${pythonPath}`, (error, stdout, stderr) => {
   }
 
   console.log(`stdout:\n${stdout}`);
+  
 });
 }
 
