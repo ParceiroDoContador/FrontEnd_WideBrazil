@@ -340,7 +340,7 @@ if str(liberacao) == "<Response [200]>":
                                                 {
                                                     "cTabela": "conta-receber",
                                                     "nId": nId,
-                                                    "cNomeArquivo": "invoice.docx",
+                                                    "cNomeArquivo": "invoice.pdf",
                                                     "cTipoArquivo": "",
                                                     "cArquivo": cArquivo,
                                                     "cMd5": cMd5
@@ -397,7 +397,7 @@ if str(liberacao) == "<Response [200]>":
     valor_total_dolar = valor_total_dolar.replace(".", ",")
     valor_total_dolar = valor_total_dolar.replace("_", ".")
     gerar_invoice(valor_total_dolar, nome, description)
-    shutil.make_archive('invoice', 'zip', '', 'invoice.docx')
+    shutil.make_archive('invoice', 'zip', '', 'invoice.pdf')
     with open("invoice.zip", "rb") as arquivo:
         invoice_64 = base64.b64encode(arquivo.read())
     invoice_64 = str(invoice_64)
