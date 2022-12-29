@@ -111,6 +111,7 @@ if str(liberacao) == "<Response [200]>":
             pagina += 1
         return codigo_cliente_omie
     def gerar_invoice(valor_total_dolar, nome, description):    
+        nome = nome.upper()
         data_inicio = datetime.now().strftime('%d/%m/%Y')
         data_final = "Data Final"
         balance_due = valor_total_dolar
@@ -158,34 +159,34 @@ if str(liberacao) == "<Response [200]>":
 
         #====================== TABELA =================================#
         cnv.setFillColorRGB(0.83, 0.87, 0.82)
-        cnv.rect(20, 515, 555, 18, fill=1, stroke=0)
+        cnv.rect(20, 525, 555, 18, fill=1, stroke=0)
         cnv.setFillColorRGB(0, 0, 0)
         cnv.setFillColorRGB(0.2, 0.4, 0.33)
-        cnv.drawString(120, 520, "DESCRIPTION                                                                                            RATE              AMOUNT")
+        cnv.drawString(120, 530, "DESCRIPTION                                                                                            RATE              AMOUNT")
         cnv.setFillColorRGB(0, 0, 0)
         cnv.setFont("Helvetica-Bold", 10)
         #cnv.drawString(30, 500, "Security Deposit")
         cnv.setFont("Helvetica", 10)
-        cnv.drawString(440, 500, f' {rate_dados}')
-        cnv.drawString(505, 500, f' {amount_dados}')
-        '''cnv.drawString(120, 490, f'Security Deposit EOR - {nome} -')
-        cnv.drawString(120, 480, f'This amount will be refunded in full to the CONTRACTING PARTY ')
-        cnv.drawString(120, 470, f'at the end of the contract or used for employee dismissal expenses')
-        cnv.drawString(120, 460, f'(1time the total monthly cost of the employee payroll).')'''
-        x = 120
-        y = 480        
-        posicao = 479        
+        cnv.drawString(440, 510, f' {rate_dados}')
+        cnv.drawString(505, 510, f' {amount_dados}')
+        cnv.drawString(60, 510, f'Security Deposit EOR - {nome} -')
+        cnv.drawString(60, 500, f'This amount will be refunded in full to the CONTRACTING PARTY at the end of')
+        cnv.drawString(60, 490, f'the contract or used for employee dismissal expenses (1time the total monthly ')
+        cnv.drawString(60, 480, f'cost of the employee payroll).')
+        x = 60
+        y = 460        
+        posicao = 459        
         for chave in description.keys():
-            print(f'description[chave]: {description[chave]}')
-            if description[chave] != "":
-                cnv.drawString(x, y, f'{chave}:........................................................................................................')   
-                cnv.setFillColorRGB(1, 225, 225)   
-                cnv.rect(425, posicao, 310, 10, fill=1, stroke=0)            
-                cnv.setFillColorRGB(0, 0, 0)      
-                cnv.drawString(425, y, f'R$ {description[chave]}')
-                y -= 10
-                posicao -= 10
-        
+                print(f'description[chave]: {description[chave]}')
+                if description[chave] != "":
+                        cnv.drawString(x, y, f'{chave}:............................................................................................................................')   
+                        cnv.setFillColorRGB(1, 225, 225)   
+                        cnv.rect(425, posicao, 310, 10, fill=1, stroke=0)            
+                        cnv.setFillColorRGB(0, 0, 0)      
+                        cnv.drawString(425, y, f'R$ {description[chave]}')
+                        y -= 10
+                        posicao -= 10
+
         cnv.setFont("Helvetica-Bold", 10)
 
         #============================= Baixo ===================================#
