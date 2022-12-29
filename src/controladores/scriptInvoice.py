@@ -177,7 +177,7 @@ if str(liberacao) == "<Response [200]>":
         y = 460        
         posicao = 459        
         for chave in description.keys():
-                #print(f'description[chave]: {description[chave]}')
+                print(f'description[chave]: {description[chave]}')
                 if description[chave] != "":
                         cnv.drawString(x, y, f'{chave}:............................................................................................................................')   
                         cnv.setFillColorRGB(1, 225, 225)   
@@ -261,35 +261,35 @@ if str(liberacao) == "<Response [200]>":
                     valor_documento = valor_documento.replace(".", ",")
                     valor_documento = valor_documento.replace("_", ".")
                     if codigo_categoria == categoria_receber_salario:
-                        description["Salário"] = valor_documento
+                        description["Salary"] = valor_documento
                     if codigo_categoria == categoria_receber_comissao:
-                        description["Comissão"] = valor_documento
+                        description["Commission"] = valor_documento
                     if codigo_categoria == categoria_receber_dsr:
-                        description["D.S.R. Sobre Comissão"] = valor_documento
+                        description["D.S.R. Sobre Commission"] = valor_documento
                     if codigo_categoria == categoria_receber_alimentacao:
-                        description["Vale Refeicao Alimentacao"] = valor_documento
+                        description["Meal Allowance"] = valor_documento
                     if codigo_categoria == categoria_receber_reembolso_despesas:
-                        description["Reembolso de despesas"] = valor_documento
+                        description["Expenses reimbursement"] = valor_documento
                     if codigo_categoria == categoria_receber_reembolso_saude:
-                        description["Reembolso Seg. Saúde"] = valor_documento
+                        description["Health Insurance"] = valor_documento
                     if codigo_categoria == categoria_receber_previdencia:
-                        description["Previdência Privada"] = valor_documento
+                        description["Private Pension"] = valor_documento
                     if codigo_categoria == categoria_receber_inss_empresa:
-                        description["Base INSS Empresa"] = valor_documento
+                        description["Employer INSS (Social Security)"] = valor_documento
                     if codigo_categoria == categoria_receber_fgts:
-                        description["Base F.G.T.S"] = valor_documento
+                        description["FGTS (Service Guarantee Fund)"] = valor_documento
                     if codigo_categoria == categoria_receber_flash:
                         description["Flash"] = valor_documento
                     if codigo_categoria == categoria_receber_ferias:
-                        description["Férias"] = valor_documento
+                        description["Vacation"] = valor_documento
                     if codigo_categoria == categoria_receber_decimo:
-                        description["Décimo Terceiro"] = valor_documento
+                        description["decimo_terceiro"] = valor_documento
                     if codigo_categoria == categoria_receber_seguro:
-                        description["Seguro"] = valor_documento
+                        description["Life Insurance"] = valor_documento
                     if codigo_categoria == categoria_receber_liquido:
-                        description["Líquído"] = valor_documento
+                        description["Employee Net Salary"] = valor_documento
                     if codigo_categoria == categoria_receber_adiantamento:
-                        description["Adiantamento"] = valor_documento
+                        description["Salary advance"] = valor_documento
             pagina += 1
         return valor_total, description
     def pegar_data_vencimento():
@@ -388,9 +388,9 @@ if str(liberacao) == "<Response [200]>":
 
     #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
     codigo_cliente_omie = buscar_codigo_cliente(nome)
-    description = {"Salário": "", "Comissão": "", "D.S.R. Sobre Comissão": "",  "Vale Refeicao Alimentacao": "", "Reembolso de despesas": "", "Reembolso Seg. Saúde": "", "INSS Salário": "",\
-    "Adiantamento": "", "IRRF Salário": "", "Previdência Privada": "", "Base INSS Empresa": "", "Base F.G.T.S": "", "Líquído": "", "Férias": "",\
-    "Décimo Terceiro": "", "Seguro": "", "Flash": ""}            
+    description = {"Salary": "1000", "Commission": "1000", "Remunerated Weekly Rest": "1000",  "Meal Allowance": "1000", "Expenses reimbursement": "1000", "Health Insurance": "1000", "INSS (Social Security)": "1000",\
+    "Salary advance": "1000", "Income Tax": "1000", "Private Pension": "1000", "Employer INSS (Social Security)": "1000", "FGTS (Service Guarantee Fund)": "1000", "Employee Net Salary": "1000", "Vacation": "1000",\
+    "13th salary": "1000", "Life Insurance": "1000", "Flash": "1000"}          
     valor_total, description = pegar_valor_conta_receber(codigo_cliente_omie, description)                
     valor_total_dolar = valor_total / cotacao_dolar
     valor_total_dolar = (f'{valor_total_dolar:,.2f}')
