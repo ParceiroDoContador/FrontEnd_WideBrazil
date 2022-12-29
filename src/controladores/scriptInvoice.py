@@ -282,7 +282,7 @@ if str(liberacao) == "<Response [200]>":
                     if codigo_categoria == categoria_receber_ferias:
                         description["Férias"] = valor_documento
                     if codigo_categoria == categoria_receber_decimo:
-                        description["decimo_terceiro"] = valor_documento
+                        description["Décimo Terceiro"] = valor_documento
                     if codigo_categoria == categoria_receber_seguro:
                         description["Seguro"] = valor_documento
                     if codigo_categoria == categoria_receber_liquido:
