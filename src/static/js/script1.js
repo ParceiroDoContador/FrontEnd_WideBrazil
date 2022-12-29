@@ -84,7 +84,7 @@ downInput.addEventListener('click', async event => {
             authorization: token
         }
     }).then(res => {
-        if (res.status === 200){
+        if (res.response === "liberacao: <Response [200]>"){
             console.log(res);
             alert('Invoice gerado com sucesso!')
         } else {
