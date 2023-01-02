@@ -37,6 +37,14 @@ try {
 }
 }*/
 
+function resetDate() {
+    const data_venc = document.getElementById('dataVencimento')
+    data_venc.type = 'text'
+}
+
+
+
+
 downInput.addEventListener('click', async event => {
     event.preventDefault();
     const token = localStorage.getItem('token');
@@ -93,6 +101,7 @@ downInput.addEventListener('click', async event => {
     nomeCliente.value = '';
     valorDolar.value = '';
     dataVencimento.value = '';
+    resetDate()
 
 
     });
