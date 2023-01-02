@@ -110,10 +110,10 @@ if str(liberacao) == "<Response [200]>":
                     break
             pagina += 1
         return codigo_cliente_omie
-    def gerar_invoice(valor_total_dolar, nome, description):    
+    def gerar_invoice(valor_total_dolar, nome, description, data_vencimento):    
         nome = nome.upper()
         data_inicio = datetime.now().strftime('%d/%m/%Y')
-        data_final = "Data Final"
+        data_final = data_vencimento
         balance_due = valor_total_dolar
         amount_dados = valor_total_dolar
         rate_dados = valor_total_dolar
@@ -397,14 +397,14 @@ if str(liberacao) == "<Response [200]>":
     valor_total_dolar = valor_total_dolar.replace(",", "_")
     valor_total_dolar = valor_total_dolar.replace(".", ",")
     valor_total_dolar = valor_total_dolar.replace("_", ".")
-    gerar_invoice(valor_total_dolar, nome, description)
+    data_vencimento = pegar_data_vencimento()
+    gerar_invoice(valor_total_dolar, nome, description, data_vencimento)
     shutil.make_archive('invoice', 'zip', '', 'invoice.pdf')
     with open("invoice.zip", "rb") as arquivo:
         invoice_64 = base64.b64encode(arquivo.read())
     invoice_64 = str(invoice_64)
     invoice_64 = invoice_64[:-1]
     invoice_64 = invoice_64[2:]
-    codigo_cliente_omie = buscar_codigo_cliente(nome)
-    data_vencimento = pegar_data_vencimento()
+    codigo_cliente_omie = buscar_codigo_cliente(nome)    
     codigo_lancamento_omie = incluir_conta_receber_codigo(codigo_cliente_omie, data_vencimento, valor_total, categoria_invoice)
     anexar_invoice(codigo_lancamento_omie, invoice_64)
