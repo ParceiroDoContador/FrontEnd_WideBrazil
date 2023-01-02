@@ -83,7 +83,10 @@ downInput.addEventListener('click', async event => {
         headers: {
             authorization: token
         }
-    }).then(res => {console.log(res)})
+    }).then(res => {
+        console.log(res)
+        alert('Requisição feita com sucesso!')
+    })
 
     nomeCliente.value = '';
     valorDolar.value = '';
