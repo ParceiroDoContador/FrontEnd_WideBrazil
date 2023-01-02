@@ -3,6 +3,7 @@ const linkRef = document.querySelector('#linkRef');
 const nomeCliente = document.querySelector('#nomeCliente');
 const valorDolar = document.querySelector('#valorDolar');
 const infosForms = document.querySelector('#infosForms');
+const dataVencimento = document.querySelector('#dataVencimento')
 const urlServer = 'https://wide.parceirodocontador.com.br'
 
 
@@ -47,9 +48,10 @@ downInput.addEventListener('click', async event => {
     
     const nome = document.getElementById('nomeCliente').value;
     const cotacao_dolar = document.getElementById('valorDolar').value;
+    const data_vencimento = document.getElementById('dataVencimento').value
 
 
-    if (nome === '' || cotacao_dolar === '') {
+    if (nome === '' || cotacao_dolar === '' || data_vencimento === '') {
         alert('Preencha todos os campos');
         return;
     }
@@ -73,7 +75,7 @@ downInput.addEventListener('click', async event => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nome, cotacao_dolar })
+        body: JSON.stringify({ nome, cotacao_dolar, data_vencimento })
     }).then(resposta => {})
 
     const dataUrl3 = url3.split('?')[0];
@@ -90,6 +92,7 @@ downInput.addEventListener('click', async event => {
 
     nomeCliente.value = '';
     valorDolar.value = '';
+    dataVencimento.value = '';
 
 
     });
