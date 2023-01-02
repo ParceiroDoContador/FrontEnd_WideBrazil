@@ -1,7 +1,7 @@
 import boto3
 import requests
 import json
-from datetime import datetime, timedelta, date
+from datetime import datetime
 import unidecode
 import shutil
 import base64
@@ -177,7 +177,7 @@ if str(liberacao) == "<Response [200]>":
         y = 460        
         posicao = 459        
         for chave in description.keys():
-                print(f'description[chave]: {description[chave]}')
+                #print(f'description[chave]: {description[chave]}')
                 if description[chave] != "":
                         cnv.drawString(x, y, f'{chave}:............................................................................................................................')   
                         cnv.setFillColorRGB(1, 225, 225)   
@@ -292,12 +292,6 @@ if str(liberacao) == "<Response [200]>":
                         description["Salary advance"] = valor_documento
             pagina += 1
         return valor_total, description
-    def pegar_data_vencimento():
-        data_atual = date.today()
-        data_vencimento = data_atual + timedelta(days=10)
-        data_atual = data_atual.strftime("%d/%m/%Y")
-        data_vencimento = data_vencimento.strftime("%d/%m/%Y")
-        return data_vencimento
     def incluir_conta_receber_codigo(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -385,6 +379,10 @@ if str(liberacao) == "<Response [200]>":
     if "," in str(cotacao_dolar):
         cotacao_dolar = cotacao_dolar.replace(",", ".")
     cotacao_dolar = float(cotacao_dolar)
+    data_vencimento = str(j_son["data_vencimento"])
+    data_vencimento = datetime.strptime(data_vencimento, "%Y-%m-%d")
+    data_vencimento = datetime.strftime(data_vencimento, "%d-%m-%Y")
+    data_vencimento = data_vencimento.replace("-", "/")
 
     #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
     codigo_cliente_omie = buscar_codigo_cliente(nome)
@@ -397,7 +395,6 @@ if str(liberacao) == "<Response [200]>":
     valor_total_dolar = valor_total_dolar.replace(",", "_")
     valor_total_dolar = valor_total_dolar.replace(".", ",")
     valor_total_dolar = valor_total_dolar.replace("_", ".")
-    data_vencimento = pegar_data_vencimento()
     gerar_invoice(valor_total_dolar, nome, description, data_vencimento)
     shutil.make_archive('invoice', 'zip', '', 'invoice.pdf')
     with open("invoice.zip", "rb") as arquivo:
