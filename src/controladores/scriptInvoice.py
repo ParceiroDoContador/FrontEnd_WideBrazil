@@ -294,7 +294,7 @@ if str(liberacao) == "<Response [200]>":
         return valor_total, description
     def pegar_data_vencimento():
         data_atual = date.today()
-        data_vencimento = data_atual + timedelta(days=30)
+        data_vencimento = data_atual + timedelta(days=10)
         data_atual = data_atual.strftime("%d/%m/%Y")
         data_vencimento = data_vencimento.strftime("%d/%m/%Y")
         return data_vencimento
@@ -388,9 +388,9 @@ if str(liberacao) == "<Response [200]>":
 
     #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
     codigo_cliente_omie = buscar_codigo_cliente(nome)
-    description = {"Salary": "1000", "Commission": "1000", "Remunerated Weekly Rest": "1000",  "Meal Allowance": "1000", "Expenses reimbursement": "1000", "Health Insurance": "1000", "INSS (Social Security)": "1000",\
-    "Salary advance": "1000", "Income Tax": "1000", "Private Pension": "1000", "Employer INSS (Social Security)": "1000", "FGTS (Service Guarantee Fund)": "1000", "Employee Net Salary": "1000", "Vacation": "1000",\
-    "13th salary": "1000", "Life Insurance": "1000", "Flash": "1000"}          
+    description = {"Salary": "", "Commission": "", "Remunerated Weekly Rest": "",  "Meal Allowance": "", "Expenses reimbursement": "", "Health Insurance": "", "INSS (Social Security)": "",\
+    "Salary advance": "", "Income Tax": "", "Private Pension": "", "Employer INSS (Social Security)": "", "FGTS (Service Guarantee Fund)": "", "Employee Net Salary": "", "Vacation": "",\
+    "13th salary": "", "Life Insurance": "", "Flash": ""}          
     valor_total, description = pegar_valor_conta_receber(codigo_cliente_omie, description)                
     valor_total_dolar = valor_total / cotacao_dolar
     valor_total_dolar = (f'{valor_total_dolar:,.2f}')
