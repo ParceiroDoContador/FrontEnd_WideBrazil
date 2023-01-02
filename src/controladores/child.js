@@ -118,10 +118,7 @@ exec(`python ${pythonPath}`, (error, stdout, stderr) => {
     return;
   }
 
-  console.log(`${stdout}`);
-  let response = stdout
-  return response
-  
+  console.log(`stdout: ${stdout}`);
 });
 }
 

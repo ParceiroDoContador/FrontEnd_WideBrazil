@@ -83,17 +83,13 @@ downInput.addEventListener('click', async event => {
         headers: {
             authorization: token
         }
-    }).then(res => {
-        console.log(res);
-        if (res.response === "liberacao: <Response [200]>"){
-            console.log(res);
-            alert('Invoice gerado com sucesso!')
-        } else {
-            alert('Erro ao gerar invoice')
-        }
-    });
+    }).then(res => {console.log(res)})
 
     nomeCliente.value = '';
     valorDolar.value = '';
 
-})
+
+    });
+
+    
+
