@@ -1,12 +1,10 @@
 import os
 import boto3
 import pandas as pd
-import os
 import requests
 import json
 from datetime import timedelta, date
 import random
-import os
 from reportlab.lib.pagesizes import A4
 import unidecode
 
@@ -15,12 +13,12 @@ liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a4441
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     
-    categoria_receber_flash = "1.01.91"
-    categoria_pagar_flash = "2.01.91"
+    categoria_receber_flash = "1.01.03"
+    categoria_pagar_flash = "2.03.12"
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
+    app_key = '2892438774225'
+    app_secret = '99e922ea95545adfe02a267b7607e37d'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)

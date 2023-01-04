@@ -13,12 +13,12 @@ liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a4441
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
 
-    categoria_receber_seguro = "1.04.06"
-    categoria_pagar_seguro = "2.01.89"
+    categoria_receber_seguro = "1.01.85"
+    categoria_pagar_seguro = "2.03.13"
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
+    app_key = '2892438774225'
+    app_secret = '99e922ea95545adfe02a267b7607e37d'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -170,13 +170,10 @@ if str(liberacao) == "<Response [200]>":
         nome = dados[13]
         if str(nome) == "nan":
             break
-        ##########################
-        #nome = "Paulo"
-        ##########################
         codigo_cliente_omie = buscar_codigo_cliente(nome)
-        #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
         premio = dados[18]
         nome = dados[13]
         print(f"nome: {nome} - codigo_cliente_omie: {codigo_cliente_omie} - premio: {premio}")
-        incluir_conta_pagar(codigo_cliente_omie, data_vencimento, premio, categoria_pagar_seguro)  
+        incluir_conta_pagar(codigo_cliente_omie, data_vencimento, premio, categoria_pagar_seguro)
+        incluir_conta_receber(codigo_cliente_omie, data_vencimento, premio, categoria_receber_seguro) 
         linha_planilha += 1

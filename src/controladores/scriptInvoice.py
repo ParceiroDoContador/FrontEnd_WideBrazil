@@ -14,25 +14,22 @@ liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a4441
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     #======================= Categorias ==============================#
-    categoria_receber_salario = "1.01.97"
-    categoria_receber_comissao = "1.01.02"
-    categoria_receber_dsr = "1.01.03"
-    categoria_receber_alimentacao = "1.02.01"
+    categoria_receber_salario = "1.01.98"
+    categoria_receber_comissao = "1.01.87"
+    categoria_receber_dsr = "1.01.95"
+    categoria_receber_alimentacao = "1.01.03"
     categoria_receber_reembolso_despesas = "1.04.02"
-    categoria_receber_reembolso_saude = "2.01.01"
-    categoria_receber_inss = "1.01.96"
-    categoria_receber_adiantamento = "1.03.03"
-    categoria_receber_irrf = ""
-    categoria_receber_previdencia = "1.03.26"
-    categoria_receber_inss_empresa = "1.01.99"
-    categoria_receber_fgts = "1.01.98"
-    categoria_receber_liquido = "1.04.03"
-    categoria_receber_ferias = "1.01.94"
-    categoria_receber_seguro = "1.04.06"
-    categoria_receber_decimo = "1.01.90"
-    categoria_receber_flash = "1.01.91"
-
-    categoria_invoice = "1.01.89"
+    categoria_receber_reembolso_saude = "1.01.92"
+    categoria_receber_inss = "1.01.91"
+    categoria_receber_adiantamento = "1.04.01"
+    categoria_receber_previdencia = "1.01.90"
+    categoria_receber_inss_empresa = "1.01.89"
+    categoria_receber_fgts = "1.01.88"
+    categoria_receber_ferias = "1.01.97"
+    categoria_receber_decimo = "1.01.94"
+    categoria_receber_flash = "1.01.03"
+    categoria_invoice = "1.01.86"
+    categoria_receber_seguro = "1.01.85"
 
     app_key = '3068480598183'
     app_secret = '91ed53d6746eb516fd6239186c82ad65'
@@ -177,7 +174,6 @@ if str(liberacao) == "<Response [200]>":
         y = 460        
         posicao = 459        
         for chave in description.keys():
-                #print(f'description[chave]: {description[chave]}')
                 if description[chave] != "":
                         cnv.drawString(x, y, f'{chave}:............................................................................................................................')   
                         cnv.setFillColorRGB(1, 225, 225)   
@@ -284,12 +280,14 @@ if str(liberacao) == "<Response [200]>":
                         description["Vacation"] = valor_documento
                     if codigo_categoria == categoria_receber_decimo:
                         description["13th salary"] = valor_documento
-                    if codigo_categoria == categoria_receber_seguro:
-                        description["Life Insurance"] = valor_documento
-                    if codigo_categoria == categoria_receber_liquido:
-                        description["Employee Net Salary"] = valor_documento
+                    #if codigo_categoria == categoria_receber_seguro:
+                        #description["Life Insurance"] = valor_documento
+                    #if codigo_categoria == categoria_receber_liquido:
+                        #description["Employee Net Salary"] = valor_documento
                     if codigo_categoria == categoria_receber_adiantamento:
                         description["Salary advance"] = valor_documento
+                    if codigo_categoria == categoria_receber_seguro:
+                        description["Insurance"] = valor_documento
             pagina += 1
         return valor_total, description
     def incluir_conta_receber_codigo(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
@@ -388,7 +386,7 @@ if str(liberacao) == "<Response [200]>":
     codigo_cliente_omie = buscar_codigo_cliente(nome)
     description = {"Salary": "", "Commission": "", "Remunerated Weekly Rest": "",  "Meal Allowance": "", "Expenses reimbursement": "", "Health Insurance": "", "INSS (Social Security)": "",\
     "Salary advance": "", "Income Tax": "", "Private Pension": "", "Employer INSS (Social Security)": "", "FGTS (Service Guarantee Fund)": "", "Employee Net Salary": "", "Vacation": "",\
-    "13th salary": "", "Life Insurance": "", "Flash": ""}          
+    "13th salary": "", "Life Insurance": "", "Flash": "", "Insurance": ""}          
     valor_total, description = pegar_valor_conta_receber(codigo_cliente_omie, description)                
     valor_total_dolar = valor_total / cotacao_dolar
     valor_total_dolar = (f'{valor_total_dolar:,.2f}')
