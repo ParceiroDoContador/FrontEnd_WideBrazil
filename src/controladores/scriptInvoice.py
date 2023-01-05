@@ -10,6 +10,11 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from variaveis import credentials, categorias_invoice
 from variaveis import conta_corrente
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
@@ -32,9 +37,6 @@ if str(liberacao) == "<Response [200]>":
     categoria_receber_flash,\
     categoria_invoice,\
     categoria_receber_seguro = categorias_invoice()
-
-    app_key, app_secret = credentials()
-    id_conta_corrente = conta_corrente()
 
     def buscar_codigo_cliente(nome):
         nome = unidecode.unidecode(nome).upper()

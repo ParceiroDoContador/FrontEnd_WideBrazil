@@ -5,11 +5,13 @@ import json
 from datetime import timedelta, date
 import random
 import os
-from reportlab.lib.pagesizes import A4
 import unidecode
-from variaveis import credentials
 from variaveis import categorias_decimo_terceiro
-from variaveis import conta_corrente
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
@@ -19,8 +21,6 @@ if str(liberacao) == "<Response [200]>":
     categoria_pagar_decimo, categoria_receber_decimo = categorias_decimo_terceiro()
 
     #============================= Funções ============================#
-    app_key, app_secret = credentials()
-    id_conta_corrente = conta_corrente()
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
