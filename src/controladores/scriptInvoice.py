@@ -8,68 +8,34 @@ import base64
 import random
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from variaveis import credentials, categorias_invoice
+from variaveis import conta_corrente
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     #======================= Categorias ==============================#
-    categoria_receber_salario = "1.01.98"
-    categoria_receber_comissao = "1.01.87"
-    categoria_receber_dsr = "1.01.95"
-    categoria_receber_alimentacao = "1.01.03"
-    categoria_receber_reembolso_despesas = "1.04.02"
-    categoria_receber_reembolso_saude = "1.01.92"
-    categoria_receber_inss = "1.01.91"
-    categoria_receber_adiantamento = "1.04.01"
-    categoria_receber_previdencia = "1.01.90"
-    categoria_receber_inss_empresa = "1.01.89"
-    categoria_receber_fgts = "1.01.88"
-    categoria_receber_ferias = "1.01.97"
-    categoria_receber_decimo = "1.01.94"
-    categoria_receber_flash = "1.01.03"
-    categoria_invoice = "1.01.86"
-    categoria_receber_seguro = "1.01.85"
+    categoria_receber_salario,\
+    categoria_receber_comissao,\
+    categoria_receber_dsr,\
+    categoria_receber_alimentacao,\
+    categoria_receber_reembolso_despesas,\
+    categoria_receber_reembolso_saude,\
+    categoria_receber_inss,\
+    categoria_receber_adiantamento,\
+    categoria_receber_previdencia,\
+    categoria_receber_inss_empresa,\
+    categoria_receber_fgts,\
+    categoria_receber_ferias,\
+    categoria_receber_decimo,\
+    categoria_receber_flash,\
+    categoria_invoice,\
+    categoria_receber_seguro = categorias_invoice()
 
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
-    def buscar_codigo_cliente_teste(nome):
-        nome = unidecode.unidecode(nome).upper()
-        pagina = 1
-        total_de_paginas = 1
-        while pagina <= total_de_paginas:
-            url = "https://app.omie.com.br/api/v1/geral/clientes/"
-            payload = json.dumps({
-                                    "call": "ListarClientes",
-                                    "app_key": app_key,
-                                    "app_secret": app_secret,
-                                    "param":[
-                                                {
-                                                    "pagina": pagina,
-                                                    "registros_por_pagina": 500,
-                                                    "apenas_importado_api": "N"
-                                                }
-                                            ]
-                                })
-            headers ={
-                        'Content-Type': 'application/json'
-                    }
-            response = requests.request("POST", url, headers=headers, data=payload)
-            response = response.json()
-            pagina = response["pagina"]
-            total_de_paginas = response["total_de_paginas"]
-            clientes_cadastro = response["clientes_cadastro"]
-            for cliente in clientes_cadastro:
-                try:
-                    contato = cliente["contato"]
-                    contato = unidecode.unidecode(contato).upper()
-                    if contato == nome:
-                        codigo_cliente_omie = cliente["codigo_cliente_omie"]
-                        break
-                except:
-                    pass        
-            pagina += 1
-        return codigo_cliente_omie
+    app_key, app_secret = credentials()
+    id_conta_corrente = conta_corrente()
+
     def buscar_codigo_cliente(nome):
         nome = unidecode.unidecode(nome).upper()
         pagina = 1
@@ -159,12 +125,12 @@ if str(liberacao) == "<Response [200]>":
         cnv.rect(20, 525, 555, 18, fill=1, stroke=0)
         cnv.setFillColorRGB(0, 0, 0)
         cnv.setFillColorRGB(0.2, 0.4, 0.33)
-        cnv.drawString(120, 530, "DESCRIPTION                                                                                            RATE              AMOUNT")
+        cnv.drawString(120, 530, "DESCRIPTION                                                                                        RATE              AMOUNT")
         cnv.setFillColorRGB(0, 0, 0)
         cnv.setFont("Helvetica-Bold", 10)
         #cnv.drawString(30, 500, "Security Deposit")
         cnv.setFont("Helvetica", 10)
-        cnv.drawString(440, 510, f' {rate_dados}')
+        cnv.drawString(420, 510, f' {rate_dados}')
         cnv.drawString(505, 510, f' {amount_dados}')
         cnv.drawString(60, 510, f'Security Deposit EOR - {nome} -')
         cnv.drawString(60, 500, f'This amount will be refunded in full to the CONTRACTING PARTY at the end of')
@@ -192,7 +158,7 @@ if str(liberacao) == "<Response [200]>":
         cnv.setFont("Helvetica", 10)
         cnv.drawString(310, 280, "BALANCE DUE")
         cnv.setFont("Helvetica-Bold", 17)
-        cnv.drawString(400, 278, f"       USD {balance_due}")
+        cnv.drawString(400, 278, f"      USD {balance_due}")
         cnv.setFont("Helvetica", 8)
         cnv.drawString(30, 270, "CORPORATIVOS LTDA ")
         cnv.drawString(30, 260, "Intermediary Institution (or Correspondent Bank, Field 56)")
@@ -309,7 +275,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })
@@ -318,7 +284,7 @@ if str(liberacao) == "<Response [200]>":
                 }
         response = requests.request("POST", url, headers=headers, data=payload)
         response = response.json()
-       #print(f'IncluirContaReceber: {response}')
+        print(f'IncluirContaReceber: {response}')
         codigo_lancamento_omie = response["codigo_lancamento_omie"]
         return codigo_lancamento_omie
     def anexar_invoice(nId, cArquivo):
@@ -345,7 +311,7 @@ if str(liberacao) == "<Response [200]>":
                     }
             response = requests.request("POST", url, headers=headers, data=payload)
             response = response.json()
-           # print(f'IncluirAnexo: {response}')
+            print(f'IncluirAnexo: {response}')
             try:
                 faultstring = response["faultstring"]
                 faultstring = faultstring.split(" ")
@@ -382,7 +348,6 @@ if str(liberacao) == "<Response [200]>":
     data_vencimento = datetime.strftime(data_vencimento, "%d-%m-%Y")
     data_vencimento = data_vencimento.replace("-", "/")
 
-    #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
     codigo_cliente_omie = buscar_codigo_cliente(nome)
     description = {"Salary": "", "Commission": "", "Remunerated Weekly Rest": "",  "Meal Allowance": "", "Expenses reimbursement": "", "Health Insurance": "", "INSS (Social Security)": "",\
     "Salary advance": "", "Income Tax": "", "Private Pension": "", "Employer INSS (Social Security)": "", "FGTS (Service Guarantee Fund)": "", "Employee Net Salary": "", "Vacation": "",\

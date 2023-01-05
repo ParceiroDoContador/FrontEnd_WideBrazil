@@ -7,6 +7,8 @@ import random
 import os
 from reportlab.lib.pagesizes import A4
 import unidecode
+from variaveis import credentials, categorias_receber_folha, categorias_pagar_folha
+from variaveis import conta_corrente
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
@@ -15,35 +17,34 @@ if str(liberacao) == "<Response [200]>":
     
     #======================= Categorias ==============================#
     # RECEBER
-    categoria_receber_salario = "1.01.98"
-    categoria_receber_comissao = "1.01.87"
-    categoria_receber_dsr = "1.01.95"
-    categoria_receber_alimentacao = "1.01.03"
-    categoria_receber_reembolso_despesas = "1.04.02"
-    categoria_receber_reembolso_saude = "1.01.92"
-    categoria_receber_inss = "1.01.91"
-    categoria_receber_adiantamento = "1.04.01"    
-    categoria_receber_previdencia = "1.01.90"
-    categoria_receber_inss_empresa = "1.01.89"
-    categoria_receber_fgts = "1.01.88"    
-
+    categoria_receber_salario,\
+    categoria_receber_comissao,\
+    categoria_receber_dsr,\
+    categoria_receber_alimentacao,\
+    categoria_receber_reembolso_despesas,\
+    categoria_receber_reembolso_saude,\
+    categoria_receber_inss,\
+    categoria_receber_adiantamento,\
+    categoria_receber_previdencia,\
+    categoria_receber_inss_empresa,\
+    categoria_receber_fgts = categorias_receber_folha()
     # PAGAR
-    categoria_pagar_liquido = "2.03.94"
-    categoria_pagar_irrf = "2.03.96"
-    categoria_pagar_fgts = "2.03.95"
-    categoria_pagar_inss_empresa = "2.03.99"
-    categoria_pagar_reembolso_saude = "2.03.97"
-    categoria_pagar_reembolso_despesas = "2.03.08"
-    categoria_pagar_inss = "2.03.06"
-    categoria_pagar_comissao = "2.02.01"
-    categoria_pagar_dsr = "2.03.98"
-    categoria_pagar_alimentacao = "2.03.12"
-    categoria_pagar_adiantamento = "2.03.02"
-    categoria_pagar_previdencia = "2.03.14"
+    categoria_pagar_liquido,\
+    categoria_pagar_irrf,\
+    categoria_pagar_fgts,\
+    categoria_pagar_inss_empresa,\
+    categoria_pagar_reembolso_saude,\
+    categoria_pagar_reembolso_despesas,\
+    categoria_pagar_inss,\
+    categoria_pagar_comissao,\
+    categoria_pagar_dsr,\
+    categoria_pagar_alimentacao,\
+    categoria_pagar_adiantamento,\
+    categoria_pagar_previdencia = categorias_pagar_folha()
 
     #============================= Funções ============================#
-    app_key = '2892438774225'
-    app_secret = '99e922ea95545adfe02a267b7607e37d'
+    app_key, app_secret = credentials()
+    id_conta_corrente = conta_corrente()
 
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
@@ -92,7 +93,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })
