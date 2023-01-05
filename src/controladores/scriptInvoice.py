@@ -322,7 +322,7 @@ if str(liberacao) == "<Response [200]>":
         codigo_lancamento_omie = response["codigo_lancamento_omie"]
         return codigo_lancamento_omie
     def anexar_invoice(nId, cArquivo):
-        cMd5 = "123"
+        cMd5 = "1234"
         while True:      
             url = "https://app.omie.com.br/api/v1/geral/anexo/"
             payload = json.dumps({
