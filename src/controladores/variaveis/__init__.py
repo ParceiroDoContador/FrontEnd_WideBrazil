@@ -1,5 +1,3 @@
-from .credentials import credentials
-from .credentials import conta_corrente
 from .categorias import categorias_decimo_terceiro
 from .categorias import categorias_ferias
 from .categorias import categorias_flash
