@@ -1,26 +1,27 @@
 import os
 import boto3
 import pandas as pd
-import os
 import requests
 import json
 from datetime import timedelta, date
 import random
-import os
 from reportlab.lib.pagesizes import A4
 import unidecode
+from variaveis import categorias_flash
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     
-    categoria_receber_flash = "1.01.91"
-    categoria_pagar_flash = "2.01.91"
+    categoria_receber_flash, categoria_pagar_flash = categorias_flash()
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -68,7 +69,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })

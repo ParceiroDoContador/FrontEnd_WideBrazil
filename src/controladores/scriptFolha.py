@@ -7,6 +7,13 @@ import random
 import os
 from reportlab.lib.pagesizes import A4
 import unidecode
+from variaveis import credentials, categorias_receber_folha, categorias_pagar_folha
+from variaveis import conta_corrente
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
@@ -14,30 +21,33 @@ print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     
     #======================= Categorias ==============================#
-    categoria_receber_salario = "1.01.97"
-    categoria_comissao = "1.01.02"
-    categoria_dsr = "1.01.03"
-    categoria_alimentacao = "1.02.01"
-    categoria_receber_reembolso_despesas = "1.04.02"
-    categoria_receber_reembolso_saude = "2.01.01"
-    categoria_receber_inss = "1.01.96"
-    categoria_adiantamento = "1.03.03"
-    categoria_irrf = ""
-    categoria_previdencia = "1.03.26"
-    categoria_receber_inss_empresa = "1.01.99"
-    categoria_receber_fgts = "1.01.98"
-    categoria_liquido = "2.01.99"
-
-    categoria_pagar_fgts = "2.01.94"
-    categoria_pagar_inss_empresa = "2.01.98"
-    categoria_pagar_reembolso_saude = "2.01.96"
-    categoria_pagar_reembolso_despesas = "1.04.02"
-    categoria_pagar_inss = "2.01.97"
+    # RECEBER
+    categoria_receber_salario,\
+    categoria_receber_comissao,\
+    categoria_receber_dsr,\
+    categoria_receber_alimentacao,\
+    categoria_receber_reembolso_despesas,\
+    categoria_receber_reembolso_saude,\
+    categoria_receber_inss,\
+    categoria_receber_adiantamento,\
+    categoria_receber_previdencia,\
+    categoria_receber_inss_empresa,\
+    categoria_receber_fgts = categorias_receber_folha()
+    # PAGAR
+    categoria_pagar_liquido,\
+    categoria_pagar_irrf,\
+    categoria_pagar_fgts,\
+    categoria_pagar_inss_empresa,\
+    categoria_pagar_reembolso_saude,\
+    categoria_pagar_reembolso_despesas,\
+    categoria_pagar_inss,\
+    categoria_pagar_comissao,\
+    categoria_pagar_dsr,\
+    categoria_pagar_alimentacao,\
+    categoria_pagar_adiantamento,\
+    categoria_pagar_previdencia = categorias_pagar_folha()
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
-
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -85,7 +95,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })
@@ -209,18 +219,18 @@ if str(liberacao) == "<Response [200]>":
             print(provento)
 
         if lancamento == "Comissão":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_comissao)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_comissao)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_receber_comissao)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_pagar_comissao)
             print(provento)
 
         if lancamento == "D.S.R. Sobre Comissão":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_dsr)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_dsr)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_pagar_dsr)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_receber_dsr)
             print(provento)
 
         if lancamento == "Vale Refeicao Alimentacao":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_alimentacao)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_alimentacao)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, provento, categoria_pagar_alimentacao)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, provento, categoria_receber_alimentacao)
             print(provento)
 
         if lancamento == "Reembolso de despesas":
@@ -238,17 +248,17 @@ if str(liberacao) == "<Response [200]>":
             print(desconto)
 
         if lancamento == "Adiantamento Anterior":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_adiantamento)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, desconto, categoria_adiantamento)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_pagar_adiantamento)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, desconto, categoria_receber_adiantamento)
             print(desconto)
 
         if lancamento == "IRRF Sobre Salário":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_irrf)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_pagar_irrf)
             print(desconto)
 
         if lancamento == "Previdência Privada":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_previdencia)
-            incluir_conta_receber(codigo_cliente_omie, data_vencimento, desconto, categoria_previdencia)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, desconto, categoria_pagar_previdencia)
+            incluir_conta_receber(codigo_cliente_omie, data_vencimento, desconto, categoria_receber_previdencia)
             print(desconto)
 
         if lancamento == "Base INSS Empresa":        
@@ -264,7 +274,7 @@ if str(liberacao) == "<Response [200]>":
             print(base)
 
         if lancamento == "Líquído":
-            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, liquido, categoria_liquido)
+            incluir_conta_pagar(codigo_cliente_omie, data_vencimento, liquido, categoria_pagar_liquido)
             print(liquido) 
         
         nome_anterior = nome

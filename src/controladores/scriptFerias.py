@@ -7,18 +7,21 @@ import random
 import os
 from reportlab.lib.pagesizes import A4
 import unidecode
+from variaveis import categorias_ferias
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
     
-    categoria_pagar_ferias = "2.01.92"
-    categoria_receber_ferias = "1.01.94"
+    categoria_pagar_ferias, categoria_receber_ferias = categorias_ferias()
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -66,7 +69,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })

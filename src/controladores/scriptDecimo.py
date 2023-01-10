@@ -5,20 +5,22 @@ import json
 from datetime import timedelta, date
 import random
 import os
-from reportlab.lib.pagesizes import A4
 import unidecode
+from variaveis import categorias_decimo_terceiro
+from config import database_infos
+
+app_key = database_infos["app_key"]
+app_secret = database_infos["app_secret"]
+id_conta_corrente = database_infos["id_conta_corrente"]
 
 #=================== Verificação de Liberão ========================#
 liberacao = requests.get("https://gliciojunior.notion.site/WIDE-5ed9ee76906a444187fccaaba35702de")
 print(f"liberacao: {liberacao}")
 if str(liberacao) == "<Response [200]>":
 
-    categoria_pagar_decimo = "2.01.90"
-    categoria_receber_decimo = "1.01.90"
+    categoria_pagar_decimo, categoria_receber_decimo = categorias_decimo_terceiro()
 
     #============================= Funções ============================#
-    app_key = '3068480598183'
-    app_secret = '91ed53d6746eb516fd6239186c82ad65'
     def incluir_conta_pagar(codigo_cliente_omie, data_vencimento, valor_documento, codigo_categoria):
         randomlist = random.sample(range(1, 12), 8)
         randomlist = str(randomlist)
@@ -66,7 +68,7 @@ if str(liberacao) == "<Response [200]>":
                                                 "data_vencimento": data_vencimento,
                                                 "valor_documento": valor_documento,
                                                 "codigo_categoria": codigo_categoria,
-                                                "id_conta_corrente": "7311700205"
+                                                "id_conta_corrente": id_conta_corrente
                                             }
                                         ]
                             })
@@ -76,43 +78,6 @@ if str(liberacao) == "<Response [200]>":
         response = requests.request("POST", url, headers=headers, data=payload)
         response = response.json()
         print(f'IncluirContaReceber: {response}')
-    def buscar_codigo_cliente_teste(nome):
-        nome = unidecode.unidecode(nome).upper()
-        pagina = 1
-        total_de_paginas = 1
-        while pagina <= total_de_paginas:
-            url = "https://app.omie.com.br/api/v1/geral/clientes/"
-            payload = json.dumps({
-                                    "call": "ListarClientes",
-                                    "app_key": app_key,
-                                    "app_secret": app_secret,
-                                    "param":[
-                                                {
-                                                    "pagina": pagina,
-                                                    "registros_por_pagina": 500,
-                                                    "apenas_importado_api": "N"
-                                                }
-                                            ]
-                                })
-            headers ={
-                        'Content-Type': 'application/json'
-                    }
-            response = requests.request("POST", url, headers=headers, data=payload)
-            response = response.json()
-            pagina = response["pagina"]
-            total_de_paginas = response["total_de_paginas"]
-            clientes_cadastro = response["clientes_cadastro"]
-            for cliente in clientes_cadastro:
-                try:
-                    contato = cliente["contato"]
-                    contato = unidecode.unidecode(contato).upper()
-                    if contato == nome:
-                        codigo_cliente_omie = cliente["codigo_cliente_omie"]
-                        break
-                except:
-                    pass        
-            pagina += 1
-        return codigo_cliente_omie
     def buscar_codigo_cliente(nome):
         nome = unidecode.unidecode(nome).upper()
         pagina = 1
@@ -154,12 +119,6 @@ if str(liberacao) == "<Response [200]>":
         data_vencimento = data_vencimento.strftime("%d/%m/%Y")
         return data_vencimento
 
-    #================= Data vencimento =================#
-    data_atual = date.today()
-    data_vencimento = data_atual + timedelta(days=30)
-    data_atual = data_atual.strftime("%d/%m/%Y")
-    data_vencimento = data_vencimento.strftime("%d/%m/%Y")
-
     #====================== Recebendo Arquivo S3 ======================#
     s3 = boto3.resource("s3", aws_access_key_id="AKIATX77KZ6NA7RTXMFO", aws_secret_access_key="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")
     bucket = s3.Bucket("parceiro-do-contador-bucket")
@@ -177,10 +136,6 @@ if str(liberacao) == "<Response [200]>":
         if str(nome) == "nan":
             break
         decimo_terceiro = dados[12]
-        ##########################
-        #nome = "Paulo"
-        ##########################
-        #codigo_cliente_omie = buscar_codigo_cliente_teste(nome)
         codigo_cliente_omie = buscar_codigo_cliente(nome)
         decimo_terceiro = dados[12]
         nome = dados[1]
