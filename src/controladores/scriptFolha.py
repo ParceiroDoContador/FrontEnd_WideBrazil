@@ -5,10 +5,8 @@ import json
 from datetime import timedelta, date
 import random
 import os
-from reportlab.lib.pagesizes import A4
 import unidecode
-from variaveis import credentials, categorias_receber_folha, categorias_pagar_folha
-from variaveis import conta_corrente
+from variaveis import categorias_receber_folha, categorias_pagar_folha
 from config import database_infos
 
 app_key = database_infos["app_key"]

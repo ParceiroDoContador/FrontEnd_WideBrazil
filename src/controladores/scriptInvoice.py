@@ -8,8 +8,7 @@ import base64
 import random
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from variaveis import credentials, categorias_invoice
-from variaveis import conta_corrente
+from variaveis import categorias_invoice
 from config import database_infos
 
 app_key = database_infos["app_key"]

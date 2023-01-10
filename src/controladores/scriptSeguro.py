@@ -6,8 +6,7 @@ from datetime import timedelta, date
 import random
 import unidecode
 import os
-from variaveis import credentials, categorias_seguro
-from variaveis import conta_corrente
+from variaveis import categorias_seguro
 from config import database_infos
 
 app_key = database_infos["app_key"]
